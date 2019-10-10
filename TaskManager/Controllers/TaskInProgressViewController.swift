@@ -15,7 +15,6 @@ class TaskInProgressViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // Variables
-    var createdTasks = [TaskObj]()
     var reasonField: UITextField?
     
     // MARK: Overrides
@@ -23,7 +22,7 @@ class TaskInProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ApiClientTask.getTask(completionHandler: handleGetTask(bool:error:message:tasks:))
+        ApiClientTask.getTask(url: ApiClientTask.Endpoints.getTask.url ,completionHandler: handleGetTask(bool:error:message:tasks:))
         
         // Helper to create the tasks
         //createTask()
@@ -37,22 +36,7 @@ class TaskInProgressViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         
-        // Reloading table data everytime the view is presented
         taskTable.reloadData()
-    }
-    
-    
-    // MARK: Helpers
-    // TODO: Check and see proper updations
-    // Display only the tasks that are created
-    func createList(){
-        var dummy = [TaskObj]()
-        for task in AppDelegate.tasks{
-            if task.state == "created"{
-                dummy.append(task)
-            }
-        }
-        self.createdTasks = dummy
     }
     
     // MARK: Handlers
@@ -81,7 +65,6 @@ class TaskInProgressViewController: UIViewController {
                 
                 // TODO: See the proper updating of the task array
                 AppDelegate.tasks = tasks
-                self.createList()
                 self.taskTable.reloadData()
             }else{
                 let alertDailog = UIAlertController(title: "Failure", message: message!, preferredStyle: .alert)
@@ -104,13 +87,13 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
     
     // Return the number of rows in the the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return createdTasks.count
+        return AppDelegate.tasks.count
     }
     
     // Inflate the data into the prototype cell and present the rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskHolder") as! TaskTableViewCell
-        let currentTask = createdTasks[indexPath.row]
+        let currentTask = AppDelegate.tasks[indexPath.row]
         
         cell.setCell(taskTitle: currentTask.title, taskDescrpition: currentTask.description, taskCreatedAt: currentTask.date)
         
@@ -165,7 +148,7 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let taskDetailVC = storyboard?.instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
-        let currentTask = createdTasks[indexPath.row]
+        let currentTask = AppDelegate.tasks[indexPath.row]
         
         taskDetailVC.taskDate = currentTask.date
         taskDetailVC.taskTitle = currentTask.title
@@ -187,11 +170,11 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
             
             let url = ApiClientTask.Endpoints.successTask.url
             
-            ApiClientTask.changeStateToDone(url: url, taskID: self.createdTasks[indexPath.row].id, completionHandler: { (bool, error, message) in
+            ApiClientTask.changeStateToDone(url: url, taskID: AppDelegate.tasks[indexPath.row].id, completionHandler: { (bool, error, message) in
                 
                 DispatchQueue.main.async {
                     if bool{
-                        self.createdTasks.remove(at: indexPath.row)
+                        AppDelegate.tasks.remove(at: indexPath.row)
                         self.taskTable.reloadData()
                     }else{
                         let alert = UIAlertController(title: "Failure", message: message, preferredStyle: .alert)
@@ -228,10 +211,10 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
             if reason == ""{
                 self.reasonField?.placeholder = "You must enter a reason!"
             }else{
-                ApiClientTask.changeStateToCancel(url: url, taskID: self.createdTasks[indexPath.row].id, reason: reason, completionHandler: { (bool, error, message) in
+                ApiClientTask.changeStateToCancel(url: url, taskID: AppDelegate.tasks[indexPath.row].id, reason: reason, completionHandler: { (bool, error, message) in
                     DispatchQueue.main.async {
                         if bool{
-                            self.createdTasks.remove(at: indexPath.row)
+                            AppDelegate.tasks.remove(at: indexPath.row)
                             self.taskTable.reloadData()
                         }else{
                             let alert = UIAlertController(title: "Failure", message: message, preferredStyle: .alert)

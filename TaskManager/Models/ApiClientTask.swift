@@ -47,25 +47,27 @@ class ApiClientTask {
     }
     
     // MARK: Actions
-    
+    // MARK: POST
+    // Adding a new task to the database (POST)
     class func addTask(title: String, description: String, date: String, completionHandler: @escaping(Bool, Error?, String, TaskObj?) -> Void){
         
         // Creating a URLRequest
         var request = URLRequest(url: Endpoints.addTask.url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "auth-token")
         request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
         let body = AddTaskRequest(taskTitle: title, taskDescription: description, taskCreatedOn: date)
         request.httpBody = try! JSONEncoder().encode(body)
         
-        
+        // Creating a URLSession task to perfrom the request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data else{
                 completionHandler(false, nil, "Could not connect to server!", nil)
                 return
             }
+            
+            // Decoding and reading the JSONResponse from above data
             let response = response as! HTTPURLResponse
             if response.statusCode == 200{
                 do{
@@ -94,32 +96,109 @@ class ApiClientTask {
         
     }
     
-    
-    class func getTask(completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void){
+    // Changing the state of the current task to "done"(POST)
+    class func changeStateToDone(url: URL, taskID: String, completionHandler: @escaping (Bool, Error?, String)->Void){
         
-        var tasks = [TaskObj]()
-        
-        var request = URLRequest(url: Endpoints.getTask.url)
+        // Creating a URL Request
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        print(ApiClientAuth.requestToken)
-        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization" )
-        request.httpMethod = "GET"
+        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        let body = ChangeTaskStateToDone(taskId: taskID)
+        request.httpBody = try! JSONEncoder().encode(body)
         
+        // Creating a URLSession task to perfrom the request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
+            // Checking to see if data returned is null
+            guard let data = data else{
+                completionHandler(false, nil, "Could not connect to server!")
+                return
+            }
+            
+            // Decoding and reading the JSONResponse from above data
+            do{
+                let decoder = JSONDecoder()
+                let responseObj = try decoder.decode(ChangeTaskStateResponse.self, from: data)
+                
+                if responseObj.status == 200{
+                    completionHandler(true, nil, responseObj.message)
+                }else{
+                    completionHandler(false, nil, responseObj.message)
+                }
+            }catch{
+                completionHandler(false, error, "Some error occured, try again!")
+            }
+        }
+        task.resume()
+    }
+    
+    // Changing the state of the current task to "cancel"(POST)
+    class func changeStateToCancel(url: URL, taskID: String, reason: String, completionHandler: @escaping (Bool, Error?, String)->Void){
+        
+        // Creating a URL Request
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        let body = ChangeTaskStateToCancel(taskId: taskID, reason: reason)
+        request.httpBody = try! JSONEncoder().encode(body)
+        
+        // Creating a URLSession task to perfrom the request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Checking to see if data returned is null
+            guard let data = data else{
+                completionHandler(false, nil, "Could not connect to server!")
+                return
+            }
+            
+            // Decoding and reading the JSONResponse from above data
+            do{
+                let decoder = JSONDecoder()
+                let responseObj = try decoder.decode(ChangeTaskStateResponse.self, from: data)
+                
+                if responseObj.status == 200{
+                    completionHandler(true, nil, responseObj.message)
+                }else{
+                    completionHandler(false, nil, responseObj.message)
+                }
+            }catch{
+                completionHandler(false, error, "Some error occured, try again!")
+            }
+        }
+        task.resume()
+    }
+    
+    
+    // MARK: GET
+    
+    // Getting all tasks from the database in different calls(GET)
+    class func getTask(url: URL, completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void){
+        
+        // Creating a URL Request
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        
+        // Creating a URLSession task to perfrom the request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Checking to see if data returned is null
             guard let data = data else{
                 completionHandler(false, nil, "Could not connect to server!", nil)
                 return
             }
             
+            // Decoding and reading the JSONResponse from above data
             let response = response as! HTTPURLResponse
             if response.statusCode == 200{
                 do{
                     let decoder = JSONDecoder()
                     let responseObj = try decoder.decode(GetTaskResponse.self, from: data)
                     
-                    tasks = responseObj.task
-                    completionHandler(true, nil, nil, tasks)
+                    completionHandler(true, nil, nil, responseObj.task)
                 }catch{
                     completionHandler(false, error, "Some error occured, try again!", nil)
                 }
@@ -139,69 +218,5 @@ class ApiClientTask {
     }
     
     
-    class func changeStateToDone(url: URL, taskID: String, completionHandler: @escaping (Bool, Error?, String)->Void){
-        
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField:"auth-token")
-        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
-        request.httpMethod = "POST"
-        let body = ChangeTaskStateToDone(taskId: taskID)
-        request.httpBody = try! JSONEncoder().encode(body)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let data = data else{
-                completionHandler(false, nil, "Could not connect to server!")
-                return
-            }
-            
-            do{
-                let decoder = JSONDecoder()
-                let responseObj = try decoder.decode(ChangeTaskStateResponse.self, from: data)
-                
-                if responseObj.status == 200{
-                    completionHandler(true, nil, responseObj.message)
-                }else{
-                    completionHandler(false, nil, responseObj.message)
-                }
-            }catch{
-                completionHandler(false, error, "Some error occured, try again!")
-            }
-        }
-        task.resume()
-    }
-    
-    class func changeStateToCancel(url: URL, taskID: String, reason: String, completionHandler: @escaping (Bool, Error?, String)->Void){
-        
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(ApiClientAuth.requestToken, forHTTPHeaderField: "Authorization")
-        request.httpMethod = "POST"
-        let body = ChangeTaskStateToCancel(taskId: taskID, reason: reason)
-        request.httpBody = try! JSONEncoder().encode(body)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let data = data else{
-                completionHandler(false, nil, "Could not connect to server!")
-                return
-            }
-            
-            do{
-                let decoder = JSONDecoder()
-                let responseObj = try decoder.decode(ChangeTaskStateResponse.self, from: data)
-                
-                if responseObj.status == 200{
-                    completionHandler(true, nil, responseObj.message)
-                }else{
-                    completionHandler(false, nil, responseObj.message)
-                }
-            }catch{
-                completionHandler(false, error, "Some error occured, try again!")
-            }
-        }
-        task.resume()
-    }
     
 }

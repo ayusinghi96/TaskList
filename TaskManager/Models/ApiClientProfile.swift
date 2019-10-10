@@ -31,7 +31,7 @@ class ApiClientProfile {
     
     // MARK: Actions
     
-    class func getUserProfile(completionHandler: @escaping (Bool, Error?, String?, UserObj?) -> Void){
+    class func getUserProfile(completionHandler: @escaping (Bool, Error?, String?, UserObj?, Int) -> Void){
         
         
         var request = URLRequest(url: Endpoints.userProfile.url)
@@ -42,7 +42,7 @@ class ApiClientProfile {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data else{
-                completionHandler(false, nil, "Could not connect to server!", nil)
+                completionHandler(false, nil, "Could not connect to server!", nil, 0)
                 return
             }
             
@@ -53,18 +53,18 @@ class ApiClientProfile {
                     let responseObj = try decoder.decode(UserProfileResponse.self, from: data)
                     
                     let user = responseObj.message
-                    completionHandler(true, nil, nil, user)
+                    completionHandler(true, nil, nil, user, responseObj.tasks)
                 }catch{
-                    completionHandler(false, error, "Some error occured, try again!", nil)
+                    completionHandler(false, error, "Some error occured, try again!", nil, 0)
                 }
             }else{
                 do{
                     let decoder = JSONDecoder()
                     let responseObj = try decoder.decode(UserProfileErrorResponse.self, from: data)
                     
-                    completionHandler(false, nil, responseObj.message, nil)
+                    completionHandler(false, nil, responseObj.message, nil, 0)
                 }catch{
-                    completionHandler(false, error, "Some error occured, try again!", nil)
+                    completionHandler(false, error, "Some error occured, try again!", nil, 0)
                 }
             }
         }

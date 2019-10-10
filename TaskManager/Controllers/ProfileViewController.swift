@@ -16,11 +16,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var taskHandledLabel: UILabel!
     
+    
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ApiClientProfile.getUserProfile { (bool, error, message, user) in
+        ApiClientProfile.getUserProfile { (bool, error, message, user, tasks) in
             
             DispatchQueue.main.async {
                 if bool{
@@ -32,7 +33,7 @@ class ProfileViewController: UIViewController {
                     
                     self.userNameLabel.text = user.username
                     self.userEmailLabel.text = user.email
-                    self.taskHandledLabel.text = String(AppDelegate.tasks.count)
+                    self.taskHandledLabel.text = String(tasks)
                 }
             }
             

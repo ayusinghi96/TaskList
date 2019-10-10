@@ -73,7 +73,6 @@ class ApiClientAuth {
                 }
             }catch{
                 completionHandler(false, error, "Some error occured, try again!")
-                //print(error)
             }
         }
         task.resume()
@@ -98,6 +97,7 @@ class ApiClientAuth {
                 return
             }
             
+            // Decoding and reading the JSONResponse from above data
             let httpResponse = response as! HTTPURLResponse
             
             if httpResponse.statusCode == 200{

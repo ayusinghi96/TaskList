@@ -25,7 +25,7 @@ struct TaskObj: Codable{
     let title: String
     let description: String
     let username: String
-    let reason: String
+    let reason: String?
     let date: String
     var state: String
 

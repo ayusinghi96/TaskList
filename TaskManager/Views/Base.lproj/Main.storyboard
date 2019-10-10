@@ -67,13 +67,13 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-bU-aPj">
                                         <rect key="frame" x="0.0" y="50" width="374" height="30"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="PrimaryDark"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kuZ-Jq-9mq">
                                         <rect key="frame" x="0.0" y="100" width="374" height="30"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="PrimaryDark"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
@@ -369,19 +369,19 @@
                                         <rect key="frame" x="0.0" y="40" width="374" height="30"/>
                                         <color key="textColor" name="PrimaryDark"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DxZ-qx-f9g">
                                         <rect key="frame" x="0.0" y="80" width="374" height="30"/>
                                         <color key="textColor" name="PrimaryDark"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HGB-i4-gPU">
                                         <rect key="frame" x="0.0" y="120" width="374" height="30"/>
                                         <color key="textColor" name="PrimaryDark"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qj8-gD-2Ma">
                                         <rect key="frame" x="0.0" y="160" width="374" height="30"/>
@@ -652,6 +652,9 @@
                         <viewLayoutGuide key="safeArea" id="GOp-Dl-6vm"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Cancelled" image="crossIcon" landscapeImage="crossIcon" largeContentSizeImage="crossIcon" id="mWi-Ub-cWv"/>
+                    <connections>
+                        <outlet property="cancelledTaskTable" destination="FhG-ky-JUl" id="eQA-E7-JW8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXo-wK-caT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -832,6 +835,9 @@
                         <viewLayoutGuide key="safeArea" id="29T-GO-fH0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Completed" image="tickIcon" landscapeImage="tickIcon" largeContentSizeImage="tickIcon" id="vdx-U1-8s3"/>
+                    <connections>
+                        <outlet property="completedTaskTable" destination="o91-FA-QJa" id="MrA-b1-urR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jI2-Ay-Pc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

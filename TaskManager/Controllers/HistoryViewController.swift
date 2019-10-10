@@ -17,7 +17,7 @@ class HistoryViewController: UIViewController {
     // Variables
     // 3d Array of type TASK
     var tasks = [TaskObj]()
-    
+    var days = 30
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,35 +27,51 @@ class HistoryViewController: UIViewController {
         taskHistoryTable.delegate = self
         taskHistoryTable.dataSource = self
         
-        ApiClientTask.getTask { (bool, error, message, tasks) in
-            DispatchQueue.main.async {
-                
-                if bool{
-                    guard let tasks = tasks else{
-                        return
-                    }
-                    if tasks.count == 0{
-                        let alertDailog = UIAlertController(title: "No Tasks", message: "You do not have any tasks to show!", preferredStyle: .alert)
-                        alertDailog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alertDailog, animated: true, completion: nil)
-                    }
-                    AppDelegate.tasks = tasks
-                }else{
-                    let alertDailog = UIAlertController(title: "Failure", message: message!, preferredStyle: .alert)
-                    alertDailog.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alertDailog, animated: true, completion: nil)
-                }
-            }
-        }
-        tasks = AppDelegate.tasks
+        // TODO: Make API Calls
+        
+        var url = ApiClientTask.Endpoints.getTaskHistory.stringValue
+        url = url+String(days)
+        let historyURL = URL(string: url)
+        
+        ApiClientTask.getTask(url: historyURL!, completionHandler: handleResponse(bool:error:message:tasks:))
+        
         taskHistoryTable.reloadData()
     }
     
     @IBAction func filterContent(_ sender: Any) {
-        filterButton.isEnabled = false
         
-        let alertDailog = UIAlertController(title: "Days", message: "Add the number of days for which you want to see tasks!", preferredStyle: .alert)
         
+        
+    }
+    
+    func handleResponse(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?){
+        
+        DispatchQueue.main.async {
+            
+            if bool{
+                
+                // Safely guarding the nullable tasks
+                guard let tasks = tasks else{
+                    return
+                }
+                
+                // if the an empty task array is returned inform the user
+                if tasks.count == 0{
+                    // Alert Dailog to infrom the user
+                    let alertDailog = UIAlertController(title: "No Tasks", message: "You have no tasks older than 7 days!", preferredStyle: .alert)
+                    alertDailog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alertDailog, animated: true, completion: nil)
+                }
+                
+                // TODO: See the proper updating of the task array
+                self.tasks = tasks
+                self.taskHistoryTable.reloadData()
+            }else{
+                let alertDailog = UIAlertController(title: "Failure", message: message!, preferredStyle: .alert)
+                alertDailog.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alertDailog, animated: true, completion: nil)
+            }
+        }
         
     }
     
