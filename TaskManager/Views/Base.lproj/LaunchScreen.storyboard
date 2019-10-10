@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2m-Ap-Dh4">
+                                <rect key="frame" x="0.0" y="20" width="375" height="313.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskIcon" translatesAutoresizingMaskIntoConstraints="NO" id="y3R-Ts-uuj">
+                                        <rect key="frame" x="123.5" y="185.5" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="0XX-EC-nlK"/>
+                                            <constraint firstAttribute="width" secondItem="y3R-Ts-uuj" secondAttribute="height" multiplier="1:1" id="rsQ-2n-h62"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="y3R-Ts-uuj" secondAttribute="bottom" id="3J0-6u-dd0"/>
+                                    <constraint firstItem="y3R-Ts-uuj" firstAttribute="centerX" secondItem="F2m-Ap-Dh4" secondAttribute="centerX" id="HpH-Ky-vVF"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpA-oP-sMd">
+                                <rect key="frame" x="98" y="353.5" width="179.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fhA-zg-Cb0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qpA-oP-sMd" firstAttribute="top" secondItem="F2m-Ap-Dh4" secondAttribute="bottom" constant="20" id="GxE-YJ-KmP"/>
+                            <constraint firstItem="F2m-Ap-Dh4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SfI-i0-7mZ"/>
+                            <constraint firstItem="qpA-oP-sMd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="byc-p1-VgM"/>
+                            <constraint firstItem="F2m-Ap-Dh4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dIh-pv-CHe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F2m-Ap-Dh4" secondAttribute="bottom" multiplier="2" id="iFY-b0-SaU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F2m-Ap-Dh4" secondAttribute="trailing" id="qF1-OZ-kAd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="taskIcon" width="333" height="333"/>
+    </resources>
+</document>
