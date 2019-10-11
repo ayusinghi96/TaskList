@@ -44,6 +44,7 @@
 		2A9460A62344539F00AB001A /* GetTaskErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9460A52344539F00AB001A /* GetTaskErrorResponse.swift */; };
 		2A9460A923446AC900AB001A /* ChangeTaskStateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9460A823446AC900AB001A /* ChangeTaskStateRequest.swift */; };
 		2A9460AB2344816B00AB001A /* ChangeTaskStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9460AA2344816B00AB001A /* ChangeTaskStateResponse.swift */; };
+		2AA127B223505393003B8AED /* DaysPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA127B123505393003B8AED /* DaysPopUpViewController.swift */; };
 		2AAFDF112341E0F100CC8E55 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFDF102341E0F100CC8E55 /* TaskDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		2A9460A52344539F00AB001A /* GetTaskErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTaskErrorResponse.swift; sourceTree = "<group>"; };
 		2A9460A823446AC900AB001A /* ChangeTaskStateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTaskStateRequest.swift; sourceTree = "<group>"; };
 		2A9460AA2344816B00AB001A /* ChangeTaskStateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTaskStateResponse.swift; sourceTree = "<group>"; };
+		2AA127B123505393003B8AED /* DaysPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPopUpViewController.swift; sourceTree = "<group>"; };
 		2AAFDF102341E0F100CC8E55 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 				2A7F13E1234E08E3009F76B9 /* TabBarViewController.swift */,
 				2A7F13E3234E126B009F76B9 /* CompletedTaskViewController.swift */,
 				2A7F13E5234E127A009F76B9 /* CancelledTaskViewController.swift */,
+				2AA127B123505393003B8AED /* DaysPopUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				2A2C7F332339226800238CA7 /* TaskInProgressViewController.swift in Sources */,
 				2A2C7F4823393FDD00238CA7 /* CommonAppFunction.swift in Sources */,
 				2AAFDF112341E0F100CC8E55 /* TaskDetailsViewController.swift in Sources */,
+				2AA127B223505393003B8AED /* DaysPopUpViewController.swift in Sources */,
 				2A5EE27E233BE684001C277F /* HistoryViewController.swift in Sources */,
 				2A7F13E2234E08E3009F76B9 /* TabBarViewController.swift in Sources */,
 				2A2C7F1D2339217A00238CA7 /* AppDelegate.swift in Sources */,

@@ -28,20 +28,29 @@ class HistoryViewController: UIViewController {
         taskHistoryTable.dataSource = self
         
         // TODO: Make API Calls
-        
-        var url = ApiClientTask.Endpoints.getTaskHistory.stringValue
-        url = url+String(days)
-        let historyURL = URL(string: url)
-        
-        ApiClientTask.getTask(url: historyURL!, completionHandler: handleResponse(bool:error:message:tasks:))
+        ApiClientTask.getTask(url: createURL(), completionHandler: handleResponse(bool:error:message:tasks:))
         
         taskHistoryTable.reloadData()
     }
     
-    @IBAction func filterContent(_ sender: Any) {
-        
-        
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popUpSegue" {
+            
+            let popUp = segue.destination as! DaysPopUpViewController
+            popUp.onSave = onSave
+            
+        }
+    }
+    
+    func createURL() -> URL{
+        var url = ApiClientTask.Endpoints.getTaskHistory.stringValue
+        url = url+String(days)
+        return URL(string: url)!
+    }
+    
+    func onSave(_ days: Int) -> Void{
+        self.days = days
+        ApiClientTask.getTask(url: createURL(), completionHandler: handleResponse(bool:error:message:tasks:))
     }
     
     func handleResponse(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?){

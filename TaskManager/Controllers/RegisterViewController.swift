@@ -113,14 +113,13 @@ class RegisterViewController: UIViewController {
     }
     
     // Updating the button state depending on various conditions
-    func checkButtonEnabled(){
-       
+    func checkButtonEnabled() {
         userName = userNameField.text
         userEmail = userEmailField.text
         userPassword = userPasswordField.text
         userPasswordMatch = userPasswordMatchField.text
         
-        userRegisterButton.isEnabled = !(userName!.isEmpty || userEmail!.isEmpty || userPassword!.isEmpty || userPasswordMatch!.isEmpty)
+        userRegisterButton.isEnabled = !( userName!.isEmpty || userEmail!.isEmpty || userPassword!.isEmpty || userPasswordMatch!.isEmpty)
         let alpha = CommonAppFunction.updateButtonState(userRegisterButton.isEnabled)
         userRegisterButton.alpha = CGFloat(alpha)
         

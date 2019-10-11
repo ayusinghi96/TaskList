@@ -223,7 +223,104 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZg-Y1-oiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3675" y="577"/>
+            <point key="canvasLocation" x="4296" y="577"/>
+        </scene>
+        <!--Days Pop Up View Controller-->
+        <scene sceneID="kOc-HG-26Y">
+            <objects>
+                <viewController storyboardIdentifier="DaysPopUpViewController" id="3X3-si-B3C" customClass="DaysPopUpViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.75" contentMode="scaleToFill" id="W8p-ew-sdf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuH-30-vNI">
+                                <rect key="frame" x="40" y="348" width="334" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPS-yg-iqu">
+                                        <rect key="frame" x="0.0" y="10" width="334" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Sjp-UQ-0KE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="844-bs-E7D">
+                                        <rect key="frame" x="67" y="75" width="200" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="TNq-yg-Zbd"/>
+                                        </constraints>
+                                        <color key="textColor" name="PrimaryDark"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="4Pj-hD-xYs">
+                                        <rect key="frame" x="20" y="150" width="294" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-Pt-7Wc">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="40"/>
+                                                <color key="backgroundColor" name="Primary"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="3X3-si-B3C" eventType="touchUpInside" id="VFR-Ts-AqX"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kw9-Xl-ryO">
+                                                <rect key="frame" x="167" y="0.0" width="127" height="40"/>
+                                                <color key="backgroundColor" name="Primary"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Apply">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="apply:" destination="3X3-si-B3C" eventType="touchUpInside" id="FFg-IP-1MS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Primary"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="hCr-iW-OoM"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="844-bs-E7D" firstAttribute="centerX" secondItem="NuH-30-vNI" secondAttribute="centerX" id="By6-FO-S0z"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Pj-hD-xYs" secondAttribute="bottom" constant="10" id="Dgv-M1-bGj"/>
+                                    <constraint firstItem="OPS-yg-iqu" firstAttribute="centerX" secondItem="NuH-30-vNI" secondAttribute="centerX" id="HSK-Ad-dtP"/>
+                                    <constraint firstItem="844-bs-E7D" firstAttribute="centerX" secondItem="NuH-30-vNI" secondAttribute="centerX" id="HTl-KA-7fD"/>
+                                    <constraint firstItem="844-bs-E7D" firstAttribute="top" secondItem="OPS-yg-iqu" secondAttribute="bottom" constant="15" id="IoQ-wz-urE"/>
+                                    <constraint firstItem="OPS-yg-iqu" firstAttribute="leading" secondItem="NuH-30-vNI" secondAttribute="leading" id="ShR-jP-4fd"/>
+                                    <constraint firstItem="4Pj-hD-xYs" firstAttribute="leading" secondItem="NuH-30-vNI" secondAttribute="leading" constant="20" id="YsM-sg-apb"/>
+                                    <constraint firstItem="OPS-yg-iqu" firstAttribute="top" secondItem="NuH-30-vNI" secondAttribute="top" constant="10" id="fWc-iY-gUw"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Pj-hD-xYs" secondAttribute="trailing" constant="20" id="jcm-Xv-PPw"/>
+                                    <constraint firstAttribute="height" constant="200" id="nMq-M7-Fav"/>
+                                    <constraint firstAttribute="trailing" secondItem="OPS-yg-iqu" secondAttribute="trailing" id="sQO-MX-Vzb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NuH-30-vNI" firstAttribute="leading" secondItem="0p6-cC-BB3" secondAttribute="leading" constant="40" id="5uN-MN-U5H"/>
+                            <constraint firstItem="0p6-cC-BB3" firstAttribute="trailing" secondItem="NuH-30-vNI" secondAttribute="trailing" constant="40" id="FpC-Pb-E8q"/>
+                            <constraint firstItem="NuH-30-vNI" firstAttribute="centerY" secondItem="W8p-ew-sdf" secondAttribute="centerY" id="lzi-cs-ehv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0p6-cC-BB3"/>
+                    </view>
+                    <connections>
+                        <outlet property="applyButton" destination="kw9-Xl-ryO" id="q1a-d8-NU4"/>
+                        <outlet property="cancelButton" destination="6Ra-Pt-7Wc" id="JEs-za-xi5"/>
+                        <outlet property="daysTextField" destination="844-bs-E7D" id="v2F-Y5-tyA"/>
+                        <outlet property="enterDaysLabel" destination="OPS-yg-iqu" id="Wff-5R-2L1"/>
+                        <outlet property="popUpView" destination="NuH-30-vNI" id="9hj-If-JtG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWv-fR-Qhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3634.7826086956525" y="576.5625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="21f-Ld-3Ez">
@@ -726,7 +823,7 @@
                                 </constraints>
                                 <state key="normal" image="filterIcon"/>
                                 <connections>
-                                    <action selector="filterContent:" destination="sCh-8S-nNe" eventType="touchUpInside" id="EjW-qc-8fP"/>
+                                    <segue destination="3X3-si-B3C" kind="presentation" identifier="popUpSegue" modalPresentationStyle="overCurrentContext" id="QNI-ko-Zm9"/>
                                 </connections>
                             </button>
                         </subviews>
