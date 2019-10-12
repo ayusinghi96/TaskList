@@ -16,10 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userLoginButton: UIButton!
     @IBOutlet weak var userRegisterButton: UIButton!
     
-    // variables
-    var userName: String?
-    var userPassword: String?
-
+    // Variables
+    var task: URLSessionDataTask?
     static let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     
     // MARK: Overrides
@@ -34,6 +32,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
+        task?.cancel()
     }
     
     override func viewDidLoad() {
@@ -53,13 +52,6 @@ class LoginViewController: UIViewController {
         userNameField.delegate = self
         userPasswordField.delegate = self
         
-        // updating the state of the button
-        checkButtonEnabled()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // updating the button state
-        checkButtonEnabled()
     }
 
     // MARK: Actions
@@ -68,41 +60,40 @@ class LoginViewController: UIViewController {
     @IBAction func loginUser(_ sender: Any) {
         
         // Safely extracting the credentials
-        guard let userName = userNameField.text else{
+        guard userNameField.text != "" else{
+            self.showAlertDailog(title: "Error", message: "Enter your username!")
             return
         }
-        guard let userPassword = userPasswordField.text else{
+        guard userPasswordField.text != "" else{
+            print(userNameField.text!)
+            self.showAlertDailog(title: "Error", message: "Enter your password!")
             return
         }
         
         // Strating the activity indicator before network call
         LoginViewController.myActivityIndicator.startAnimating()
+        changeState(bool: false)
         
         // Calling the API function login to handel login request
-        ApiClientAuth.loginUser(userName: userName, password: userPassword, completionHandler: handelUserLogin(bool:error:message:))
-        //self.performSegue(withIdentifier: "LoginUserSegue", sender: self)
+        task = ApiClientAuth.loginUser(userName: userNameField.text!.lowercased(), password: userPasswordField.text!, completionHandler: handelUserLogin(bool:error:message:))
+        
     }
     
     
     // MARK: Helpers
+    
+    // Change state of the UIElements on login button pressed
+    func changeState(bool: Bool){
+        userNameField.isEnabled = bool
+        userPasswordField.isEnabled = bool
+        userLoginButton.isEnabled = bool
+    }
     
     // Creating an alert dailog display appropriate alerts
     func showAlertDailog(title: String, message: String){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    // Updating the button state depending on various conditions
-    func checkButtonEnabled(){
-        
-        userName = userNameField.text
-        userPassword = userPasswordField.text
-        
-        userLoginButton.isEnabled = !(userName!.isEmpty || userPassword!.isEmpty)
-        let alpha = CommonAppFunction.updateButtonState(userLoginButton.isEnabled)
-        userLoginButton.alpha = CGFloat(alpha)
-        
     }
     
     // MARK: Handlers
@@ -121,6 +112,7 @@ class LoginViewController: UIViewController {
                 }
                 self.showAlertDailog(title: "Failure", message: message)
             }
+            self.changeState(bool: true)
         }
     }
 }
@@ -129,15 +121,8 @@ class LoginViewController: UIViewController {
 // Extension handling the TextField delegate
 extension LoginViewController: UITextFieldDelegate{
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        userLoginButton.isEnabled = false
-        let alpha = CommonAppFunction.updateButtonState(userLoginButton.isEnabled)
-        userLoginButton.alpha = CGFloat(alpha)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        checkButtonEnabled()
         return true
     }
 }

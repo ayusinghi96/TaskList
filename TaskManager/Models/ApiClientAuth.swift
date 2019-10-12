@@ -41,7 +41,7 @@ class ApiClientAuth {
     // MARK: Actions
     
     // function to register user (POST)
-    class func registerUser(userName: String, email: String, password: String, completionHandler: @escaping (Bool, Error?, String) -> Void){
+    class func registerUser(userName: String, email: String, password: String, completionHandler: @escaping (Bool, Error?, String) -> Void) -> URLSessionDataTask{
         
         // Creating a URLRequest
         var request = URLRequest(url: Endpoints.register.url)
@@ -76,10 +76,11 @@ class ApiClientAuth {
             }
         }
         task.resume()
+        return task
     }
     
     // Function to login user (POST)
-    class func loginUser(userName: String, password: String, completionHandler: @escaping (Bool, Error?, String?) -> Void){
+    class func loginUser(userName: String, password: String, completionHandler: @escaping (Bool, Error?, String?) -> Void) -> URLSessionDataTask {
         
         // Creating a URLRequest
         var request = URLRequest(url: Endpoints.login.url)
@@ -125,6 +126,8 @@ class ApiClientAuth {
 
         }
         task.resume()
+        
+        return task
     }
     
     // Function the logout user (POST)

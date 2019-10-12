@@ -23,6 +23,8 @@ class RegisterViewController: UIViewController {
     var userPassword: String?
     var userPasswordMatch: String?
     
+    var task: URLSessionDataTask?
+    
     static let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     
     // MARK: Overrides
@@ -43,15 +45,15 @@ class RegisterViewController: UIViewController {
         userPasswordField.delegate = self
         userPasswordMatchField.delegate = self
         
-        // Updating the button state
-        checkButtonEnabled()
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //checkButtonEnabled()
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(true)
+        guard let task = task else{
+            return
+        }
+        task.cancel()
     }
-    
     
     // MARK: Actions
     
@@ -59,34 +61,55 @@ class RegisterViewController: UIViewController {
     @IBAction func registerUser(_ sender: Any) {
         
         // Safely unwrapping the user entered data
-        guard let userName = userNameField.text else{
+        guard userNameField.text != "" else{
+            self.showAlertDailog(title: "Error", message: "Enter a username!")
             return
         }
-        guard let userEmail = userEmailField.text else{
+        guard userEmailField.text != "" else{
+            print(userNameField.text!)
+            self.showAlertDailog(title: "Error", message: "Enter an email addreess!")
             return
         }
-        guard let userPassword = userPasswordField.text else{
+        guard userPasswordField.text != "" else{
+            self.showAlertDailog(title: "Error", message: "Enter the password!")
             return
         }
-        guard let userPasswordMatch = userPasswordMatchField.text else{
+        guard userPasswordMatchField.text != "" else{
+            self.showAlertDailog(title: "Error", message: "Enter your password!")
             return
         }
         
-        // if two entered password are same
-        if isPasswordMatching(userPassword, userPasswordMatch){
+        if isEmailValid(enteredEmail: userEmailField.text!){
+            // if two entered password are same
+            if isPasswordMatching(userPasswordField.text!, userPasswordMatchField.text!) {
+                
+                // Strating the activity indicator before network call
+                RegisterViewController.myActivityIndicator.startAnimating()
+                
+                // Disabling the UIElements to stop changes while processing one request
+                changeState(bool: false)
+                
+                // Calling the API function registerUser to handel register request
+                task = ApiClientAuth.registerUser(userName: userNameField.text!.lowercased(), email: userEmailField.text!, password: userPasswordField.text!, completionHandler: handelUserRegister(bool:error:message:))
             
-            // Strating the activity indicator before network call
-            RegisterViewController.myActivityIndicator.startAnimating()
-            // Calling the API function registerUser to handel register request
-            ApiClientAuth.registerUser(userName: userName, email: userEmail, password: userPassword, completionHandler: handelUserRegister(bool:error:message:))
+            }else{
+                showAlertDailog(title: "Error", message: "Passwords do not match!")
+            }
         }else{
-            showAlertDailog(title: "Error", message: "Passwords donot match!")
+            showAlertDailog(title: "Error", message: "Enter a correct Email address")
         }
-        
     }
     
     
     // MARK: Helpers
+    
+    func isEmailValid(enteredEmail: String) -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: enteredEmail)
+        
+    }
     
     // Creating an alert dailog to display appropriate alerts
     func showAlertDailog(title: String, message: String){
@@ -112,16 +135,13 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    // Updating the button state depending on various conditions
-    func checkButtonEnabled() {
-        userName = userNameField.text
-        userEmail = userEmailField.text
-        userPassword = userPasswordField.text
-        userPasswordMatch = userPasswordMatchField.text
+    func changeState(bool: Bool){
         
-        userRegisterButton.isEnabled = !( userName!.isEmpty || userEmail!.isEmpty || userPassword!.isEmpty || userPasswordMatch!.isEmpty)
-        let alpha = CommonAppFunction.updateButtonState(userRegisterButton.isEnabled)
-        userRegisterButton.alpha = CGFloat(alpha)
+        userNameField.isEnabled = bool
+        userEmailField.isEnabled = bool
+        userPasswordMatchField.isEnabled = bool
+        userPasswordField.isEnabled = bool
+        userRegisterButton.isEnabled = bool
         
     }
     
@@ -130,7 +150,6 @@ class RegisterViewController: UIViewController {
     // Register handler function to complete the end process of notifying user
     func handelUserRegister(bool: Bool, error: Error?, message: String){
         var title = "Success"
-        
         if !bool{
             title = "Failure"
         }
@@ -138,6 +157,7 @@ class RegisterViewController: UIViewController {
         DispatchQueue.main.async {
             RegisterViewController.myActivityIndicator.stopAnimating()
             self.showAlertDailog(title: title, message: message)
+            self.changeState(bool: true)
         }
     }
 }
@@ -145,17 +165,9 @@ class RegisterViewController: UIViewController {
 
 // Extension handling the TextField delegate
 extension RegisterViewController: UITextFieldDelegate{
-   
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        userRegisterButton.isEnabled = false
-        let alpha = CommonAppFunction.updateButtonState(userRegisterButton.isEnabled)
-        userRegisterButton.alpha = CGFloat(alpha)
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        checkButtonEnabled()
         return true
     }
 }
