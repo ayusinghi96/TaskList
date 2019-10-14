@@ -46,6 +46,14 @@
 		2A9460AB2344816B00AB001A /* ChangeTaskStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9460AA2344816B00AB001A /* ChangeTaskStateResponse.swift */; };
 		2AA127B223505393003B8AED /* DaysPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA127B123505393003B8AED /* DaysPopUpViewController.swift */; };
 		2AAFDF112341E0F100CC8E55 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAFDF102341E0F100CC8E55 /* TaskDetailsViewController.swift */; };
+		2ACE5E0923545D5C00BD9F86 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E0823545D5C00BD9F86 /* UserProfile.storyboard */; };
+		2ACE5E0B23545E4800BD9F86 /* AddTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E0A23545E4800BD9F86 /* AddTask.storyboard */; };
+		2ACE5E0D23545F7600BD9F86 /* InProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E0C23545F7600BD9F86 /* InProgress.storyboard */; };
+		2ACE5E0F23545F8500BD9F86 /* Completed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E0E23545F8500BD9F86 /* Completed.storyboard */; };
+		2ACE5E112354626C00BD9F86 /* Cancelled.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E102354626C00BD9F86 /* Cancelled.storyboard */; };
+		2ACE5E132354627D00BD9F86 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E122354627D00BD9F86 /* History.storyboard */; };
+		2ACE5E152354629C00BD9F86 /* TaskDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E142354629C00BD9F86 /* TaskDetail.storyboard */; };
+		2ACE5E19235479AC00BD9F86 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E18235479AC00BD9F86 /* TabView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +98,14 @@
 		2A9460AA2344816B00AB001A /* ChangeTaskStateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTaskStateResponse.swift; sourceTree = "<group>"; };
 		2AA127B123505393003B8AED /* DaysPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPopUpViewController.swift; sourceTree = "<group>"; };
 		2AAFDF102341E0F100CC8E55 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
+		2ACE5E0823545D5C00BD9F86 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		2ACE5E0A23545E4800BD9F86 /* AddTask.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddTask.storyboard; sourceTree = "<group>"; };
+		2ACE5E0C23545F7600BD9F86 /* InProgress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InProgress.storyboard; sourceTree = "<group>"; };
+		2ACE5E0E23545F8500BD9F86 /* Completed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Completed.storyboard; sourceTree = "<group>"; };
+		2ACE5E102354626C00BD9F86 /* Cancelled.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cancelled.storyboard; sourceTree = "<group>"; };
+		2ACE5E122354627D00BD9F86 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		2ACE5E142354629C00BD9F86 /* TaskDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskDetail.storyboard; sourceTree = "<group>"; };
+		2ACE5E18235479AC00BD9F86 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +174,14 @@
 				2A2C7F342339228700238CA7 /* Gradient.swift */,
 				2A2C7F252339217B00238CA7 /* LaunchScreen.storyboard */,
 				2A2C7F202339217A00238CA7 /* Main.storyboard */,
+				2ACE5E0823545D5C00BD9F86 /* UserProfile.storyboard */,
+				2ACE5E0A23545E4800BD9F86 /* AddTask.storyboard */,
+				2ACE5E0C23545F7600BD9F86 /* InProgress.storyboard */,
+				2ACE5E0E23545F8500BD9F86 /* Completed.storyboard */,
+				2ACE5E102354626C00BD9F86 /* Cancelled.storyboard */,
+				2ACE5E122354627D00BD9F86 /* History.storyboard */,
+				2ACE5E142354629C00BD9F86 /* TaskDetail.storyboard */,
+				2ACE5E18235479AC00BD9F86 /* TabView.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,9 +304,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACE5E0D23545F7600BD9F86 /* InProgress.storyboard in Resources */,
 				2A2C7F272339217B00238CA7 /* LaunchScreen.storyboard in Resources */,
+				2ACE5E152354629C00BD9F86 /* TaskDetail.storyboard in Resources */,
+				2ACE5E0F23545F8500BD9F86 /* Completed.storyboard in Resources */,
+				2ACE5E0923545D5C00BD9F86 /* UserProfile.storyboard in Resources */,
+				2ACE5E19235479AC00BD9F86 /* TabView.storyboard in Resources */,
 				2A2C7F242339217B00238CA7 /* Assets.xcassets in Resources */,
+				2ACE5E0B23545E4800BD9F86 /* AddTask.storyboard in Resources */,
+				2ACE5E112354626C00BD9F86 /* Cancelled.storyboard in Resources */,
 				2A2C7F222339217A00238CA7 /* Main.storyboard in Resources */,
+				2ACE5E132354627D00BD9F86 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

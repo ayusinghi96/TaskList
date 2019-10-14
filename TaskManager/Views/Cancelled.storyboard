@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yhg-7G-xdw">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cancelled-->
+        <scene sceneID="QGS-lO-NE6">
+            <objects>
+                <viewController id="Yhg-7G-xdw" customClass="CancelledTaskViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hSE-49-1ES">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hfr-oY-w2q">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="taskHolder" id="mva-B7-ihs" customClass="TaskTableViewCell" customModule="TaskManager" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mva-B7-ihs" id="0Qb-xd-sMe">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-jW-rMZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making the TaskManager App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-bb-7Jk">
+                                                            <rect key="frame" x="20" y="8" width="210" height="24"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 Sept, 2019" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsx-s7-Wyn">
+                                                            <rect key="frame" x="235" y="10" width="120" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="120" id="z6e-jb-hjE"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Intergation of login, register and logout features in the app by Monday" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="MKw-Nw-Cvl">
+                                                            <rect key="frame" x="20" y="37" width="335" height="37.5"/>
+                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="MKw-Nw-Cvl" firstAttribute="leading" secondItem="Q4p-jW-rMZ" secondAttribute="leading" constant="20" id="3jM-Hy-fSS"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MKw-Nw-Cvl" secondAttribute="trailing" constant="20" id="4fd-jE-KJS"/>
+                                                        <constraint firstItem="KQw-bb-7Jk" firstAttribute="leading" secondItem="Q4p-jW-rMZ" secondAttribute="leading" constant="20" id="9a5-yB-JOA"/>
+                                                        <constraint firstItem="MKw-Nw-Cvl" firstAttribute="top" secondItem="KQw-bb-7Jk" secondAttribute="bottom" constant="5" id="WSt-Oz-b2U"/>
+                                                        <constraint firstItem="Jsx-s7-Wyn" firstAttribute="top" secondItem="Q4p-jW-rMZ" secondAttribute="top" constant="10" id="XDv-g9-UrC"/>
+                                                        <constraint firstItem="KQw-bb-7Jk" firstAttribute="top" secondItem="Q4p-jW-rMZ" secondAttribute="top" constant="8" id="d9v-WH-Huj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Jsx-s7-Wyn" secondAttribute="trailing" constant="20" id="qIr-Y3-TIo"/>
+                                                        <constraint firstItem="Jsx-s7-Wyn" firstAttribute="leading" secondItem="KQw-bb-7Jk" secondAttribute="trailing" constant="5" id="xUe-aP-sgz"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MKw-Nw-Cvl" secondAttribute="bottom" constant="5" id="yNa-Oh-5Fb"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Q4p-jW-rMZ" secondAttribute="trailing" id="JrZ-BS-qzi"/>
+                                                <constraint firstItem="Q4p-jW-rMZ" firstAttribute="leading" secondItem="0Qb-xd-sMe" secondAttribute="leading" id="KUr-eh-C2q"/>
+                                                <constraint firstItem="Q4p-jW-rMZ" firstAttribute="top" secondItem="0Qb-xd-sMe" secondAttribute="top" id="X5b-oc-lON"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q4p-jW-rMZ" secondAttribute="bottom" id="vrB-Id-WjG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="taskCreatedAtLabel" destination="Jsx-s7-Wyn" id="9MP-Yg-C8h"/>
+                                            <outlet property="taskDescriptionLabel" destination="MKw-Nw-Cvl" id="EiS-JN-g9P"/>
+                                            <outlet property="taskTitileLabel" destination="KQw-bb-7Jk" id="2bF-54-nnZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Hfr-oY-w2q" firstAttribute="top" secondItem="4sB-9x-0a6" secondAttribute="top" id="1Aw-c8-Aud"/>
+                            <constraint firstItem="4sB-9x-0a6" firstAttribute="bottom" secondItem="Hfr-oY-w2q" secondAttribute="bottom" id="7G4-Ze-HDI"/>
+                            <constraint firstItem="Hfr-oY-w2q" firstAttribute="leading" secondItem="4sB-9x-0a6" secondAttribute="leading" id="TCg-yb-lb0"/>
+                            <constraint firstItem="Hfr-oY-w2q" firstAttribute="trailing" secondItem="4sB-9x-0a6" secondAttribute="trailing" id="s45-w0-BBE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4sB-9x-0a6"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Cancelled" image="crossIcon" landscapeImage="crossIcon" largeContentSizeImage="crossIcon" id="Few-cn-4rn"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cancelledTaskTable" destination="Hfr-oY-w2q" id="vvr-bo-M9C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZR-30-YJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964" y="577"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crossIcon" width="20" height="20"/>
+    </resources>
+</document>

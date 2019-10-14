@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J1J-da-KZd">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="xb6-fs-rqV">
+            <objects>
+                <navigationController id="J1J-da-KZd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NnG-UX-5bN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Primary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dDy-6N-acc" kind="relationship" relationship="rootViewController" id="xeM-Kh-CJF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AkO-jK-oYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2790" y="-121"/>
+        </scene>
+        <!--ADD TASK-->
+        <scene sceneID="kRb-ER-jrE">
+            <objects>
+                <viewController title="ADD TASK" id="dDy-6N-acc" customClass="AddTaskViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8aV-9j-vgy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rgm-LU-M9T" userLabel="TaskDetailStack">
+                                <rect key="frame" x="20" y="168" width="374" height="406.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-sn-brp">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" keyboardDismissMode="onDrag" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRH-Ye-EOH">
+                                        <rect key="frame" x="0.0" y="50" width="374" height="356.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Enter the description of your task!">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="17" name=".SFNSText"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you up to?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ud0-Vh-V8D">
+                                <rect key="frame" x="20" y="108" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6wN-hG-BG1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fG9-EA-yZp">
+                                <rect key="frame" x="146.5" y="589.5" width="121" height="31"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="ADD TASK">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddTask:" destination="dDy-6N-acc" eventType="touchUpInside" id="GXl-NY-j5P"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qc4-PQ-UQb" firstAttribute="bottom" secondItem="rgm-LU-M9T" secondAttribute="bottom" multiplier="1.5" id="5Ub-an-D8x"/>
+                            <constraint firstItem="fG9-EA-yZp" firstAttribute="top" secondItem="rgm-LU-M9T" secondAttribute="bottom" constant="15" id="8rr-n2-9H2"/>
+                            <constraint firstItem="ud0-Vh-V8D" firstAttribute="top" secondItem="qc4-PQ-UQb" secondAttribute="top" constant="20" id="FWR-nb-baO"/>
+                            <constraint firstItem="ud0-Vh-V8D" firstAttribute="leading" secondItem="qc4-PQ-UQb" secondAttribute="leading" constant="20" id="KHL-la-zlA"/>
+                            <constraint firstItem="fG9-EA-yZp" firstAttribute="centerX" secondItem="8aV-9j-vgy" secondAttribute="centerX" id="N8D-pU-pz5"/>
+                            <constraint firstItem="qc4-PQ-UQb" firstAttribute="trailing" secondItem="rgm-LU-M9T" secondAttribute="trailing" constant="20" id="nBH-Ja-4Ik"/>
+                            <constraint firstItem="rgm-LU-M9T" firstAttribute="leading" secondItem="qc4-PQ-UQb" secondAttribute="leading" constant="20" id="qKa-xN-iJs"/>
+                            <constraint firstItem="rgm-LU-M9T" firstAttribute="top" secondItem="ud0-Vh-V8D" secondAttribute="bottom" constant="20" id="xBX-0B-PYp"/>
+                            <constraint firstItem="qc4-PQ-UQb" firstAttribute="trailing" secondItem="ud0-Vh-V8D" secondAttribute="trailing" constant="20" id="zTn-oD-rGk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qc4-PQ-UQb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="ADD TASK" id="5xD-Mg-7oN">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="qsb-aG-f1l">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="BackPressed:" destination="dDy-6N-acc" id="5xV-Cr-FpW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addTaskButton" destination="fG9-EA-yZp" id="Yj8-HF-DnK"/>
+                        <outlet property="descriptionField" destination="aRH-Ye-EOH" id="TY5-Pc-cOg"/>
+                        <outlet property="titleField" destination="ibe-sn-brp" id="fBN-LQ-vbN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oq9-7g-cta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3609" y="-121"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Primary">
+            <color red="1" green="0.44705882352941179" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

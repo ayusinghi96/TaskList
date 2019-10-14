@@ -14,7 +14,7 @@ struct LoginErrorResponse: Codable{
     let status: Int
     
     enum CodingKeys: String, CodingKey{
-        case message
+        case message = "token"
         case status
     }
 }

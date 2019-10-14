@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kky-Oe-VQb">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TASK DETAIL-->
+        <scene sceneID="itY-Cd-brE">
+            <objects>
+                <viewController storyboardIdentifier="TaskDetailsViewController" title="TASK DETAIL" id="kky-Oe-VQb" customClass="TaskDetailsViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qcH-GV-TcC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Creation of Registration Section" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubf-nC-BDa">
+                                <rect key="frame" x="20" y="64" width="374" height="73"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed on - Sept. 23, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlx-bh-3nh">
+                                <rect key="frame" x="20" y="142" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ot1-Pe-gCB" userLabel="DescriptionStack">
+                                <rect key="frame" x="20" y="180" width="374" height="95.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fza-wq-Mjn">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" scrollEnabled="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Sye-k9-8Oa">
+                                        <rect key="frame" x="0.0" y="29" width="374" height="66.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-QQ-aPo" userLabel="ReasonStask">
+                                <rect key="frame" x="20" y="295.5" width="374" height="129"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-Jw-ghv">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" scrollEnabled="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ilb-MO-O0x">
+                                        <rect key="frame" x="0.0" y="29" width="374" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="rVH-I3-w1L"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Nam-QQ-aPo" firstAttribute="leading" secondItem="Wcd-pO-jTp" secondAttribute="leading" constant="20" id="4Zi-UO-T6K"/>
+                            <constraint firstItem="Ubf-nC-BDa" firstAttribute="leading" secondItem="Wcd-pO-jTp" secondAttribute="leading" constant="20" id="Dgw-2m-ZMN"/>
+                            <constraint firstItem="Nam-QQ-aPo" firstAttribute="top" secondItem="Ot1-Pe-gCB" secondAttribute="bottom" constant="20" id="HEv-UJ-rnJ"/>
+                            <constraint firstItem="Wcd-pO-jTp" firstAttribute="trailing" secondItem="Zlx-bh-3nh" secondAttribute="trailing" constant="20" id="NjK-DV-JGP"/>
+                            <constraint firstItem="Ot1-Pe-gCB" firstAttribute="leading" secondItem="Wcd-pO-jTp" secondAttribute="leading" constant="20" id="Vxz-jf-TfK"/>
+                            <constraint firstItem="Wcd-pO-jTp" firstAttribute="trailing" secondItem="Ubf-nC-BDa" secondAttribute="trailing" constant="20" id="aaC-PV-APF"/>
+                            <constraint firstItem="Zlx-bh-3nh" firstAttribute="top" secondItem="Ubf-nC-BDa" secondAttribute="bottom" constant="5" id="b0m-OZ-bdJ"/>
+                            <constraint firstItem="Ubf-nC-BDa" firstAttribute="top" secondItem="Wcd-pO-jTp" secondAttribute="top" constant="20" id="bX4-fP-gol"/>
+                            <constraint firstItem="Wcd-pO-jTp" firstAttribute="trailing" secondItem="Ot1-Pe-gCB" secondAttribute="trailing" constant="20" id="jal-Vw-XpI"/>
+                            <constraint firstItem="Ot1-Pe-gCB" firstAttribute="top" secondItem="Zlx-bh-3nh" secondAttribute="bottom" constant="20" id="oOS-jU-VmI"/>
+                            <constraint firstItem="Zlx-bh-3nh" firstAttribute="leading" secondItem="Wcd-pO-jTp" secondAttribute="leading" constant="20" id="rNb-wD-Ylx"/>
+                            <constraint firstItem="Wcd-pO-jTp" firstAttribute="trailing" secondItem="Nam-QQ-aPo" secondAttribute="trailing" constant="20" id="u8Z-VL-WTQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wcd-pO-jTp"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="Zlx-bh-3nh" id="ABO-eu-URf"/>
+                        <outlet property="descriptionTextView" destination="Sye-k9-8Oa" id="ucB-wq-CQa"/>
+                        <outlet property="reasonStack" destination="Nam-QQ-aPo" id="A18-oI-QWu"/>
+                        <outlet property="reasonTextView" destination="ilb-MO-O0x" id="glO-AW-4wQ"/>
+                        <outlet property="titleLabel" destination="Ubf-nC-BDa" id="Y7Z-5J-HpZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j6D-YZ-hTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="-74"/>
+        </scene>
+    </scenes>
+</document>

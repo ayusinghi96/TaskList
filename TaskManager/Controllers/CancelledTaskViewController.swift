@@ -85,7 +85,7 @@ extension CancelledTaskViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let taskDetailVC = storyboard?.instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
         let currentTask = cancelledTasks[indexPath.row]
         
         taskDetailVC.taskDate = currentTask.date

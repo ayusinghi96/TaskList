@@ -147,7 +147,7 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
     // Setting up the viewController to be displayed on selecting a particular table row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let taskDetailVC = storyboard?.instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
+        let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
         let currentTask = AppDelegate.tasks[indexPath.row]
         
         taskDetailVC.taskDate = currentTask.date
