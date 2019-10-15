@@ -9,11 +9,11 @@
 import Foundation
 
 // Structure of loginResponse JSON
-struct LoginResponse: Codable{
+struct LoginResponse: Codable {
     let token: String
     let status: Int
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case token
         case status
     }

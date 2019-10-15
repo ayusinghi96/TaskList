@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct AddTaskRequest: Codable{
-    
+struct AddTaskRequest: Codable {
+
     let taskTitle: String
     let taskDescription: String
     let taskCreatedOn: String
-    
-    enum CodingKeys: String, CodingKey{
-     
+
+    enum CodingKeys: String, CodingKey {
+
         case taskTitle = "title"
         case taskDescription = "description"
         case taskCreatedOn = "created_on"
-        
+
     }
 }

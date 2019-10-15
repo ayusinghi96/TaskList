@@ -9,11 +9,11 @@
 import Foundation
 
 struct UserProfileErrorResponse: Codable {
-    
+
     let message: String
     let status: Int
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case message
         case status
     }

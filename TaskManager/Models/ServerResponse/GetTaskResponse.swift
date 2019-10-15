@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct GetTaskResponse: Codable{
+struct GetTaskResponse: Codable {
     let task: [TaskObj]
     let status: Int
-    
-    enum CodingKeys: String, CodingKey{
-        
+
+    enum CodingKeys: String, CodingKey {
+
         case task = "message"
         case status
-        
+
     }
 }
 
-struct TaskObj: Codable{
+class TaskObj: Codable {
     let id: String
     let title: String
     let description: String
@@ -29,9 +29,9 @@ struct TaskObj: Codable{
     let date: String
     var state: String
 
-    
-    enum CodingKeys: String, CodingKey{
-        
+
+    enum CodingKeys: String, CodingKey {
+
         case id = "_id"
         case title
         case description

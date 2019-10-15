@@ -9,11 +9,11 @@
 import Foundation
 
 //
-struct AddTaskResponse: Codable{
+struct AddTaskResponse: Codable {
     let task: TaskObj
     let status: Int
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case task = "message"
         case status
     }

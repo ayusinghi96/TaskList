@@ -8,29 +8,29 @@
 
 import Foundation
 
-class APIEndpoints{
-    
-    struct EndpointStringURL{
-        
-        static let baseUrl = "http://192.168.1.118:8000/"
-        
+class APIEndpoints {
+
+    struct EndpointStringURL {
+
+        static let BaseUrl = "http://192.168.1.118:8000/"
+
         // List of AuthEndpoints
-        static let register = "auth/user/register"
-        static let login = "auth/user/login"
-        static let logout = "auth/user/logout"
-        
+        static let Register = "auth/user/register"
+        static let Login = "auth/user/login"
+        static let Logout = "auth/user/logout"
+
         // List of TaskEndpoints
-        static let addTask = "task"
-        static let getTask = "task"
-        static let successTask = "task/done"
-        static let getSuccessTask = "task/done"
-        static let cancelTask = "task/cancel"
-        static let getCancelledTask = "task/cancel"
-        static let getTaskHistory = "task/history/days/"
-        
+        static let AddTask = "task"
+        static let GetTask = "task"
+        static let SuccessTask = "task/done"
+        static let GetSuccessTask = "task/done"
+        static let CancelTask = "task/cancel"
+        static let GetCancelledTask = "task/cancel"
+        static let GetTaskHistory = "task/history/days/"
+
         // List of profileEndpooints
-        static let userProfile = "auth/user"
-        
+        static let UserProfile = "auth/user"
+
     }
 }
 

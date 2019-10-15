@@ -9,12 +9,12 @@
 import Foundation
 
 // Structure of registerRequest JSON
-struct RegisterRequest: Codable{
+struct RegisterRequest: Codable {
     let userName: String
     let email: String
     let password: String
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case userName = "username"
         case email
         case password

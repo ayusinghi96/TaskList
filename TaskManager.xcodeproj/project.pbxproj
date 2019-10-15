@@ -54,6 +54,7 @@
 		2ACE5E132354627D00BD9F86 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E122354627D00BD9F86 /* History.storyboard */; };
 		2ACE5E152354629C00BD9F86 /* TaskDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E142354629C00BD9F86 /* TaskDetail.storyboard */; };
 		2ACE5E19235479AC00BD9F86 /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACE5E18235479AC00BD9F86 /* TabView.storyboard */; };
+		2ACE5E1B2355A36600BD9F86 /* APIClientCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE5E1A2355A36600BD9F86 /* APIClientCalls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		2ACE5E122354627D00BD9F86 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		2ACE5E142354629C00BD9F86 /* TaskDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskDetail.storyboard; sourceTree = "<group>"; };
 		2ACE5E18235479AC00BD9F86 /* TabView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
+		2ACE5E1A2355A36600BD9F86 /* APIClientCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientCalls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				2A7F13DF234DE706009F76B9 /* APIEndpoints.swift */,
+				2ACE5E1A2355A36600BD9F86 /* APIClientCalls.swift */,
 				2A3984152339E5B700112E1B /* ApiClientAuth.swift */,
 				2A94609B23431CE300AB001A /* ApiClientTask.swift */,
 				2A3905B523471831000E110D /* ApiClientProfile.swift */,
@@ -338,6 +341,7 @@
 				2A2C7F4823393FDD00238CA7 /* CommonAppFunction.swift in Sources */,
 				2AAFDF112341E0F100CC8E55 /* TaskDetailsViewController.swift in Sources */,
 				2AA127B223505393003B8AED /* DaysPopUpViewController.swift in Sources */,
+				2ACE5E1B2355A36600BD9F86 /* APIClientCalls.swift in Sources */,
 				2A5EE27E233BE684001C277F /* HistoryViewController.swift in Sources */,
 				2A7F13E2234E08E3009F76B9 /* TabBarViewController.swift in Sources */,
 				2A2C7F1D2339217A00238CA7 /* AppDelegate.swift in Sources */,

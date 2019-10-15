@@ -9,11 +9,11 @@
 import Foundation
 
 // Structure of registerResponse JSON
-struct RegisterResponse: Codable{
+struct RegisterResponse: Codable {
     let message: String
     let status: Int
-    
-    enum CodingKeys: String, CodingKey{
+
+    enum CodingKeys: String, CodingKey {
         case message
         case status
     }

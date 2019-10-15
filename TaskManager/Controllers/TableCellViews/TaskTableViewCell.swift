@@ -14,7 +14,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitileLabel: UILabel!
     @IBOutlet weak var taskCreatedAtLabel: UILabel!
     @IBOutlet weak var taskDescriptionLabel: UILabel!
-    
+
     // MARK: Overrides
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +26,18 @@ class TaskTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     // MARK: Helpers
     // Set the cell for the current row
-    func setCell(taskTitle: String, taskDescrpition: String, taskCreatedAt: String){
-        
+    func setCell(taskTitle: String, taskDescrpition: String, taskCreatedAt: String) {
+
         let index = taskCreatedAt.index(taskCreatedAt.startIndex, offsetBy: 10)
         let date = taskCreatedAt[..<index]
-        
+
         self.taskTitileLabel.text = taskTitle
         self.taskDescriptionLabel.text = taskDescrpition
         self.taskCreatedAtLabel.text = String(date)
-        
+
     }
 
 }

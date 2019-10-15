@@ -15,31 +15,28 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var taskHandledLabel: UILabel!
-    
-    
+
+
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
         ApiClientProfile.getUserProfile { (bool, error, message, user, tasks) in
-            
-            DispatchQueue.main.async {
-                if bool{
-                    guard let user = user else{
-                        self.userNameLabel.text = "Current User"
-                        self.userEmailLabel.text = "User's current email"
-                        return
-                    }
-                    
-                    self.userNameLabel.text = user.username
-                    self.userEmailLabel.text = user.email
-                    self.taskHandledLabel.text = String(tasks)
+
+            if bool {
+                guard let user = user else {
+                    self.userNameLabel.text = "Current User"
+                    self.userEmailLabel.text = "User's current email"
+                    return
                 }
+
+                self.userNameLabel.text = user.username
+                self.userEmailLabel.text = user.email
+                self.taskHandledLabel.text = String(tasks)
             }
-            
         }
-        taskHandledLabel.text = String(AppDelegate.tasks.count)
     }
+
     @IBAction func backPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
