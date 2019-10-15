@@ -18,16 +18,11 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var userRegisterButton: UIButton!
 
     // variables
-    static let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    var activityIndicator: UIActivityIndicatorView?
 
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Creating Activity Indicator
-        RegisterViewController.myActivityIndicator.hidesWhenStopped = true
-        RegisterViewController.myActivityIndicator.center = view.center
-        view.addSubview(RegisterViewController.myActivityIndicator)
 
         // Customizing button
         userRegisterButton.layer.cornerRadius = 5
@@ -47,20 +42,19 @@ class RegisterViewController: UIViewController {
 
         // Safely unwrapping the user entered data
         guard userNameField.text != "" else {
-            self.showAlertDailog(title: "Error", message: "Enter a username!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a username!")
             return
         }
         guard userEmailField.text != "" else {
-            print(userNameField.text!)
-            self.showAlertDailog(title: "Error", message: "Enter an email addreess!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a email address!")
             return
         }
         guard userPasswordField.text != "" else {
-            self.showAlertDailog(title: "Error", message: "Enter the password!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a password!")
             return
         }
         guard userPasswordMatchField.text != "" else {
-            self.showAlertDailog(title: "Error", message: "Enter your password!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a password!")
             return
         }
 
@@ -69,19 +63,21 @@ class RegisterViewController: UIViewController {
             if isPasswordMatching(userPasswordField.text!, userPasswordMatchField.text!) {
 
                 // Strating the activity indicator before network call
-                RegisterViewController.myActivityIndicator.startAnimating()
 
+                activityIndicator = CommonAppFunction.showActivityIndicator(view: view)
+                activityIndicator?.startAnimating()
+                
                 // Disabling the UIElements to stop changes while processing one request
-                changeState(bool: false)
+                changeUIElementEnableState(enable: false)
 
                 // Calling the API function registerUser to handel register request
                 ApiClientAuth.registerUser(userName: userNameField.text!, email: userEmailField.text!, password: userPasswordField.text!, completionHandler: handleUserRegister(bool:message:error:))
 
             } else {
-                showAlertDailog(title: "Error", message: "Passwords do not match!")
+                CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Passwords do not match!")
             }
         } else {
-            showAlertDailog(title: "Error", message: "Enter a correct Email address")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a correct Email address")
         }
     }
 
@@ -96,20 +92,6 @@ class RegisterViewController: UIViewController {
 
     }
 
-    // Creating an alert dailog to display appropriate alerts
-    func showAlertDailog(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        if title == "Success" {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                self.navigationController?.popViewController(animated: true)
-            }))
-        } else {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        }
-        self.present(alertController, animated: true, completion: nil)
-    }
-
     // checking if the two passwords are same
     func isPasswordMatching(_ userPassword: String, _ userPasswordMatch: String) -> Bool {
 
@@ -120,28 +102,33 @@ class RegisterViewController: UIViewController {
         }
     }
 
-    func changeState(bool: Bool) {
+    func changeUIElementEnableState(enable: Bool) {
 
-        userNameField.isEnabled = bool
-        userEmailField.isEnabled = bool
-        userPasswordMatchField.isEnabled = bool
-        userPasswordField.isEnabled = bool
-        userRegisterButton.isEnabled = bool
-        navigationItem.hidesBackButton = !bool
+        userNameField.isEnabled = enable
+        userEmailField.isEnabled = enable
+        userPasswordMatchField.isEnabled = enable
+        userPasswordField.isEnabled = enable
+        userRegisterButton.isEnabled = enable
+        self.navigationItem.hidesBackButton = !enable
     }
 
     // MARK: Handlers
 
     // Register handler function to complete the end process of notifying user
     func handleUserRegister(bool: Bool, message: String, error: Error?) {
-        var title = "Success"
-        if !bool {
-            title = "Failure"
+        
+        activityIndicator?.stopAnimating()
+        
+        if bool {
+            CommonAppFunction.showAlertDailog(view: self, title: "Success", message: message) {
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+        } else {
+            
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
-
-        RegisterViewController.myActivityIndicator.stopAnimating()
-        self.showAlertDailog(title: title, message: message)
-        self.changeState(bool: true)
+        self.changeUIElementEnableState(enable: true)
     }
 }
 

@@ -24,9 +24,6 @@ class TaskInProgressViewController: UIViewController {
 
         ApiClientTask.downloadTask(url: URL(string: ApiClientTask.UrlEndpoints.getTask.stringValue)!, completionHandler: handleGetTask(bool:error:message:tasks:))
 
-        // Helper to create the tasks
-        //createTask()
-
         // Setting up the UITableView delegate and dataSource
         taskTable.delegate = self
         taskTable.dataSource = self
@@ -35,7 +32,6 @@ class TaskInProgressViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
         taskTable.reloadData()
     }
 
@@ -43,35 +39,25 @@ class TaskInProgressViewController: UIViewController {
 
     // Handling the task fetch request from the user
     func handleGetTask(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?) {
-
-        // Switch back to main thread
-        DispatchQueue.main.async {
-
-            // If task data is returned
-            if bool {
-
-                // Safely guarding the nullable tasks
-                guard let tasks = tasks else {
-                    return
-                }
-
-                // if the an empty task array is returned inform the user
-                if tasks.count == 0 {
-                    // Alert Dailog to infrom the user
-                    let alertDailog = UIAlertController(title: "No Tasks", message: "You do not have any tasks to show!", preferredStyle: .alert)
-                    alertDailog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alertDailog, animated: true, completion: nil)
-                }
-
-                // TODO: See the proper updating of the task array
-                AppDelegate.tasks = tasks
-                self.taskTable.reloadData()
-            } else {
-                let alertDailog = UIAlertController(title: "Failure", message: message!, preferredStyle: .alert)
-                alertDailog.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alertDailog, animated: true, completion: nil)
+        
+        // If task data is returned
+        if bool {
+            // Safely guarding the nullable tasks
+            guard let tasks = tasks else {
+                return
             }
+
+            // if the an empty task array is returned inform the user
+            if tasks.count == 0 {
+                // Alert Dailog to infrom the user
+                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You do not have any tasks to show!")
+            }
+            AppDelegate.tasks = tasks
+            self.taskTable.reloadData()
+        } else {
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message!)
         }
+        
     }
 }
 
@@ -150,11 +136,7 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
         let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
         let currentTask = AppDelegate.tasks[indexPath.row]
 
-        taskDetailVC.taskDate = currentTask.date
-        taskDetailVC.taskTitle = currentTask.title
-        taskDetailVC.taskDescription = currentTask.description
-        taskDetailVC.taskState = currentTask.state
-        taskDetailVC.taskReason = currentTask.reason
+        taskDetailVC.task = currentTask
 
         self.navigationController?.pushViewController(taskDetailVC, animated: true)
 
@@ -164,32 +146,23 @@ extension TaskInProgressViewController: UITableViewDelegate, UITableViewDataSour
     // Show Alert Dailog for confirmation
     func showAlertDailogForDone(title: String, message: String, indexPath: IndexPath) {
 
-        let alertDailog = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        alertDailog.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-
-            let url = URL(string: ApiClientTask.UrlEndpoints.successTask.stringValue)!
-            let body = ChangeTaskStateToDone(taskId: AppDelegate.tasks[indexPath.row].id)
-
-            ApiClientTask.changeTaskState(url: url, body: body, completionHandler: { (bool, error, message) in
-
-                if bool {
-                    AppDelegate.tasks.remove(at: indexPath.row)
-                    self.taskTable.reloadData()
-                } else {
-                    let alert = UIAlertController(title: "Failure", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            })
-        }))
-
-        // CANCEL Action
-        alertDailog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        // Presenting the alert controller
-        self.present(alertDailog, animated: true, completion: nil)
-
+        CommonAppFunction.showAlertDailog(view: self, title: title, message: message) { (bool) in
+            
+            if bool {
+                
+                let url = URL(string: ApiClientTask.UrlEndpoints.successTask.stringValue)!
+                let body = ChangeTaskStateToDone(taskId: AppDelegate.tasks[indexPath.row].id)
+                
+                ApiClientTask.changeTaskState(url: url, body: body, completionHandler: { (bool, error, message) in
+                    if bool {
+                        AppDelegate.tasks.remove(at: indexPath.row)
+                        self.taskTable.reloadData()
+                    } else {
+                        CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
+                    }
+                })
+            }
+        }
     }
 
     // Show Alert Dailog for getting a reason on 

@@ -14,7 +14,6 @@
         <!--Navigation Controller-->
         <scene sceneID="yIj-N4-O2i">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="elG-HC-lvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="yte-PS-scy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9lZ-9O-4Ty">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -29,13 +28,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="CxH-ya-8uI"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="elG-HC-lvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="390" y="-848"/>
         </scene>
         <!--LOGIN-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="ParentView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -94,7 +93,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lmq-st-2oz"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J0H-pp-fUE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOU-Z7-mWz">
@@ -135,6 +134,7 @@
                         <segue destination="rcH-ww-SKv" kind="presentation" identifier="LoginUserSegue" id="MOh-Bo-4FR"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1175" y="-848"/>
         </scene>
@@ -149,7 +149,6 @@
         <!--REGISTER-->
         <scene sceneID="KZ2-Ub-apc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TY9-4Q-nm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="REGISTER" id="d15-Qs-hb6" customClass="RegisterViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ww9-kO-I6C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -243,6 +242,7 @@
                         <outlet property="userRegisterButton" destination="XFf-5e-pUV" id="tP7-Fi-oSB"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TY9-4Q-nm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1965" y="-848"/>
         </scene>

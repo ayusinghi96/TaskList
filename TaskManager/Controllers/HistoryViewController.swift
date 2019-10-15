@@ -56,31 +56,25 @@ class HistoryViewController: UIViewController {
 
     func handleResponse(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?) {
 
-        DispatchQueue.main.async {
+        if bool {
 
-            if bool {
-
-                // Safely guarding the nullable tasks
-                guard let tasks = tasks else {
-                    return
-                }
-
-                // if the an empty task array is returned inform the user
-                if tasks.count == 0 {
-                    // Alert Dailog to infrom the user
-                    let alertDailog = UIAlertController(title: "No Tasks", message: "You have no tasks older than 7 days!", preferredStyle: .alert)
-                    alertDailog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alertDailog, animated: true, completion: nil)
-                }
-
-                // TODO: See the proper updating of the task array
-                self.tasks = tasks
-                self.taskHistoryTable.reloadData()
-            } else {
-                let alertDailog = UIAlertController(title: "Failure", message: message!, preferredStyle: .alert)
-                alertDailog.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alertDailog, animated: true, completion: nil)
+            // Safely guarding the nullable tasks
+            guard let tasks = tasks else {
+                return
             }
+
+            // if the an empty task array is returned inform the user
+            if tasks.count == 0 {
+                // Alert Dailog to infrom the user
+                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have no tasks older than 7 days!")
+              
+            }
+
+            // TODO: See the proper updating of the task array
+            self.tasks = tasks
+            self.taskHistoryTable.reloadData()
+        } else {
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message!)
         }
 
     }
@@ -140,11 +134,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
         let currentTask = tasks[indexPath.row]
 
-        taskDetailVC.taskDate = currentTask.date
-        taskDetailVC.taskTitle = currentTask.title
-        taskDetailVC.taskDescription = currentTask.description
-        taskDetailVC.taskState = currentTask.state
-        taskDetailVC.taskReason = currentTask.reason
+        taskDetailVC.task = currentTask
 
         self.navigationController?.pushViewController(taskDetailVC, animated: true)
 

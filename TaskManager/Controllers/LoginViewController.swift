@@ -17,8 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userRegisterButton: UIButton!
 
     // Variables
-    // TODO: minimize scope, Remove task call
-    static let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    var activityIndicator: UIActivityIndicatorView?
 
     // MARK: Overrides
 
@@ -30,15 +29,8 @@ class LoginViewController: UIViewController {
         }
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Creating Activity Indicator
-        LoginViewController.myActivityIndicator.hidesWhenStopped = true
-        LoginViewController.myActivityIndicator.center = view.center
-        // Adding it as a subview to the current view
-        view.addSubview(LoginViewController.myActivityIndicator)
 
         // Customizing buttons on the UI
         userLoginButton.layer.cornerRadius = 5
@@ -52,51 +44,46 @@ class LoginViewController: UIViewController {
 
     // MARK: Actions
 
-    // On pressing the login button
-    @IBAction func loginUser(_ sender: Any) {
+    // Login button pressed
+    @IBAction func login(_ sender: Any) {
 
         // Safely extracting the credentials
         guard userNameField.text != "" else {
-            self.showAlertDailog(title: "Error", message: "Enter your username!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter your username!")
             return
         }
         guard userPasswordField.text != "" else {
-            self.showAlertDailog(title: "Error", message: "Enter your password!")
+            CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter your password!")
             return
         }
 
         // Strating the activity indicator before network call
-        LoginViewController.myActivityIndicator.startAnimating()
-        changeState(bool: false)
+        activityIndicator = CommonAppFunction.showActivityIndicator(view: view)
+        activityIndicator?.startAnimating()
+        
+        changeUIElementEnableState(enable: false)
 
         // Calling the API function login to handel login request
         ApiClientAuth.loginUser(userName: userNameField.text!, password: userPasswordField.text!, completionHandler: handleUserLogin(bool:error:message:))
 
     }
 
-
     // MARK: Helpers
 
     // Change state of the UIElements on login button pressed
-    func changeState(bool: Bool) {
-        userNameField.isEnabled = bool
-        userPasswordField.isEnabled = bool
-        userLoginButton.isEnabled = bool
-    }
-
-    // Creating an alert dailog display appropriate alerts
-    func showAlertDailog(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alertController, animated: true, completion: nil)
+    func changeUIElementEnableState(enable: Bool) {
+        userNameField.isEnabled = enable
+        userPasswordField.isEnabled = enable
+        userLoginButton.isEnabled = enable
+        userRegisterButton.isEnabled = enable
     }
 
     // MARK: Handlers
 
-    // Login handler function to complete the end process of notifying user
+    // Login handler function
     func handleUserLogin(bool: Bool, error: Error?, message: String?) {
 
-        LoginViewController.myActivityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
 
         if bool {
             ApiClientAuth.RequestToken = UserDefaults.standard.string(forKey: "authToken")!
@@ -105,9 +92,10 @@ class LoginViewController: UIViewController {
             guard let message = message else {
                 return
             }
-            self.showAlertDailog(title: "Failure", message: message)
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
-        self.changeState(bool: true)
+        
+        changeUIElementEnableState(enable: true)
     }
 }
 

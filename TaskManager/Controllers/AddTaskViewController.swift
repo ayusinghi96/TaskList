@@ -19,8 +19,6 @@ class AddTaskViewController: UIViewController {
     // Variables
     var taskTitle: String = ""
     var taskDescription: String = ""
-    var taskDateTime: String = ""
-
 
     // MARK: Overrides
     override func viewDidLoad() {
@@ -51,12 +49,11 @@ class AddTaskViewController: UIViewController {
     // MARK: Actions
     @IBAction func AddTask(_ sender: Any) {
 
-        print("token - \(ApiClientAuth.RequestToken)")
-
-        // Disabling the UI elements to stop user from creating multiple request and change the text during the background processes
-        titleField.isEnabled = false
-        descriptionField.isEditable = false
-        addTaskButton.isEnabled = false
+        // Disabling the UI elements
+        // to stop user from creating multiple request and
+        //change the text during the background processes
+        
+        changeUIElementEnableState(enable: false)
 
         // Making the API call if the user is title is mentioned
         if taskTitle != "" && titleField.text != nil {
@@ -67,18 +64,12 @@ class AddTaskViewController: UIViewController {
             ApiClientTask.addTask(title: taskTitle, description: taskDescription, date: taskDateTime, completionHandler: addTaskHandler(bool:error:message:task:))
 
         } else {
-
             // Presenting an alert controller otherwise
-            let alert = UIAlertController(title: "Required", message: "Title Field cannot be empty!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-            self.present(alert, animated: true, completion: nil)
+            CommonAppFunction.showAlertDailog(view: self, title: "Required", message: "Title Field cannot be empty!")
         }
 
         // Enabling the UI Elements once appropriate task is completed
-        titleField.isEnabled = true
-        descriptionField.isEditable = true
-        addTaskButton.isEnabled = true
+        changeUIElementEnableState(enable: true)
     }
 
     @IBAction func BackPressed(_ sender: Any) {
@@ -86,38 +77,29 @@ class AddTaskViewController: UIViewController {
     }
 
     //MARK: Helpers
-
-    func showAlertDailog(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        if title == "Success" {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-
-                self.dismiss(animated: true, completion: nil)
-            }))
-        } else {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        }
-        self.present(alertController, animated: true, completion: nil)
+    
+    func changeUIElementEnableState(enable: Bool){
+        titleField.isEnabled = enable
+        descriptionField.isEditable = enable
+        addTaskButton.isEnabled = enable
     }
 
     // MARK: Handlers
 
     func addTaskHandler(bool: Bool, error: Error?, message: String, task: TaskObj?) {
-
         if bool {
             guard let task = task else {
                 return
             }
 
             AppDelegate.tasks.append(task)
-            self.showAlertDailog(title: "Success", message: message)
+            CommonAppFunction.showAlertDailog(view: self, title: "Success", message: message) {
+                self.dismiss(animated: true, completion: nil)
+            }
         } else {
-            self.showAlertDailog(title: "Failure", message: message)
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
-
     }
-
 }
 
 // MARK: Extensions

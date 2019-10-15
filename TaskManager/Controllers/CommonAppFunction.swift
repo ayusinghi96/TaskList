@@ -12,25 +12,42 @@ import UIKit
 // class to house commonly used functions
 class CommonAppFunction {
 
-    class func updateButtonState(_ button: Bool) -> Float {
-        if button {
-            return 1
-        } else {
-            return 0.5
-        }
-    }
-
     // Creating an alert dailog to display appropriate alerts
-    class func showAlertDailog(view: UIViewController, title: String, message: String, completionHandler: @escaping () -> ()) {
+    class func showAlertDailog(view: UIViewController, title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        if title == "Success" {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                completionHandler()
-            }))
-        } else {
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        }
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
         view.present(alertController, animated: true, completion: nil)
+    }
+    
+    class func showActivityIndicator(view: UIView) -> UIActivityIndicatorView {
+        let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+        myActivityIndicator.hidesWhenStopped = true
+        myActivityIndicator.center = view.center
+        view.addSubview(myActivityIndicator)
+        return myActivityIndicator
+    }
+    
+    class func showAlertDailog(view: UIViewController, title: String, message: String, completionHandler: @escaping (Bool) -> ()){
+        
+        let alertDailog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertDailog.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            completionHandler(true)
+        }))
+        alertDailog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            completionHandler(false)
+        }))
+        
+        view.present(alertDailog, animated: true, completion: nil)
+    }
+    
+    class func showAlertDailog(view: UIViewController, title: String, message: String, completionHandler: @escaping () -> ()){
+        let alertDailog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertDailog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            completionHandler()
+        }))
+        
+        view.present(alertDailog, animated: true, completion: nil)
     }
 }

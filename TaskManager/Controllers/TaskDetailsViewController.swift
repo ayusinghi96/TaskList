@@ -18,11 +18,7 @@ class TaskDetailsViewController: UIViewController {
     @IBOutlet weak var reasonStack: UIStackView!
 
     // Variables
-    var taskTitle: String!
-    var taskDescription: String!
-    var taskDate: String!
-    var taskState: String!
-    var taskReason: String?
+    var task: TaskObj?
 
     // MARK: Overrides
     override func viewDidLoad() {
@@ -33,11 +29,11 @@ class TaskDetailsViewController: UIViewController {
         customizeTextView(reasonTextView)
 
         // Check if reason stack needs to be hidden
-        if taskState != "cancel" {
+        if task?.state != "cancel" {
             reasonStack.isHidden = true
         } else {
             // Safely extracting the Cancellation Reason
-            guard let reason = taskReason else {
+            guard let reason = task?.reason else {
                 reasonTextView.text = "No reason to show!"
                 return
             }
@@ -46,7 +42,7 @@ class TaskDetailsViewController: UIViewController {
 
         // Processing the date title based on task state
         var dateString: String {
-            switch taskState {
+            switch task?.state {
             case "cancel": return "Cancelled on: "
             case "created": return "Created on: "
             case "done": return "Completed on: "
@@ -55,9 +51,12 @@ class TaskDetailsViewController: UIViewController {
         }
 
         // Setting the content on various elements
-        titleLabel.text = taskTitle
-        descriptionTextView.text = taskDescription
-        dateLabel.text = dateString + taskDate
+        titleLabel.text = task?.title
+        descriptionTextView.text = task?.description
+        guard let date = task?.date else {
+            return
+        }
+        dateLabel.text = dateString + date
 
     }
 

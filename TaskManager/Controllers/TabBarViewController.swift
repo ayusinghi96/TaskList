@@ -12,6 +12,7 @@ class TabBarViewController: UITabBarController {
 
     //MARK: Properties
     @IBOutlet weak var logoutButton: UIBarButtonItem!
+    var activityIndicator: UIActivityIndicatorView?
 
     //MARK: Overrides
     override func viewDidLoad() {
@@ -20,21 +21,19 @@ class TabBarViewController: UITabBarController {
 
     //MARK: Actions
     @IBAction func logout(_ sender: Any) {
+        
         logoutButton.isEnabled = false
-
+        
         // Presenting alert controller to confirm the action
-        let alertDailog = UIAlertController(title: "LOGOUT", message: "Do you really want to logout?", preferredStyle: .alert)
-
-        alertDailog.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-
-            ApiClientAuth.logoutUser(completionHandler: self.handleLogout(bool:error:message:))
-
-        }))
-        alertDailog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-            self.logoutButton.isEnabled = true
-        }))
-
-        self.present(alertDailog, animated: true, completion: nil)
+        CommonAppFunction.showAlertDailog(view: self, title: "LOGOUT", message: "Do you really want to logout?") { (bool) in
+            if bool {
+                self.activityIndicator = CommonAppFunction.showActivityIndicator(view: self.view)
+                self.activityIndicator?.startAnimating()
+                ApiClientAuth.logoutUser(completionHandler: self.handleLogout(bool:error:message:))
+            } else {
+                self.logoutButton.isEnabled = true
+            }
+        }
     }
 
     //MARK: Handlers
@@ -42,6 +41,8 @@ class TabBarViewController: UITabBarController {
     // Handler function on logout confirmation
     func handleLogout(bool: Bool, error: Error?, message: String?) {
 
+        activityIndicator?.stopAnimating()
+        
         if bool {
             self.dismiss(animated: true, completion: nil)
         } else {
@@ -51,9 +52,7 @@ class TabBarViewController: UITabBarController {
             }
 
             self.logoutButton.isEnabled = true
-            let alertController = UIAlertController(title: "Failure", message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alertController, animated: true, completion: nil)
+            CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
 
     }
