@@ -9,6 +9,7 @@
 import Foundation
 
 struct GetTaskResponse: Codable {
+    
     let task: [TaskObj]
     let status: Int
 
@@ -16,11 +17,11 @@ struct GetTaskResponse: Codable {
 
         case task = "message"
         case status
-
     }
 }
 
 class TaskObj: Codable {
+    
     let id: String
     let title: String
     let description: String
@@ -28,7 +29,6 @@ class TaskObj: Codable {
     let reason: String?
     let date: String
     var state: String
-
 
     enum CodingKeys: String, CodingKey {
 
@@ -39,6 +39,5 @@ class TaskObj: Codable {
         case state
         case reason
         case username
-
     }
 }

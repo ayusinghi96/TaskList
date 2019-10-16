@@ -10,17 +10,16 @@ import Foundation
 
 class ApiClientProfile {
 
-    // MARK: Endpoints
-
-    // Creation of AuthEndpointURL
-    enum Endpoints {
+    // Creation of AuthEndpointURLStrings
+    enum URLEndpoints {
 
         case userProfile
 
         var stringValue: String {
-            switch self {
-            case .userProfile: return APIEndpoints.EndpointStringURL.BaseUrl + APIEndpoints.EndpointStringURL.UserProfile
 
+            switch self {
+
+            case .userProfile: return APIEndpoints.EndpointStringURL.BaseUrl + APIEndpoints.EndpointStringURL.UserProfile
             }
         }
     }
@@ -29,7 +28,7 @@ class ApiClientProfile {
 
     class func getUserProfile(completionHandler: @escaping (Bool, Error?, String?, UserObj?, Int) -> Void) {
 
-        let url = URL(string: Endpoints.userProfile.stringValue)
+        let url = URL(string: URLEndpoints.userProfile.stringValue)
 
         APIClientCalls.taskForGETRequest(url: url!, authToken: ApiClientAuth.RequestToken, responseType: UserProfileResponse.self, errorResponseType: UserProfileErrorResponse.self) { (bool, response, errorResponse, error) in
 
@@ -38,19 +37,21 @@ class ApiClientProfile {
                 if response == nil && errorResponse == nil {
                     completionHandler(false, error, "Some error occured, try again!", nil, 0)
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
                         completionHandler(true, nil, nil, response.message, response.tasks)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
                         completionHandler(false, nil, errorResponse.message, nil, 0)
                     }
                 }
-
             }
         }
     }

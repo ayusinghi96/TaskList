@@ -14,6 +14,7 @@ struct UserProfileErrorResponse: Codable {
     let status: Int
 
     enum CodingKeys: String, CodingKey {
+        
         case message
         case status
     }

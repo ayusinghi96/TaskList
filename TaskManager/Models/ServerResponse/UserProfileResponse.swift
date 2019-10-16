@@ -27,8 +27,8 @@ struct UserObj: Codable {
     let email: String
 
     enum CodingKeys: String, CodingKey {
+        
         case username
         case email
     }
-
 }

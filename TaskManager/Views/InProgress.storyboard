@@ -30,16 +30,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPo-dd-Kiv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making the TaskManager App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91b-Pd-G5D">
-                                                            <rect key="frame" x="20" y="8" width="210" height="24"/>
+                                                            <rect key="frame" x="20" y="8" width="249" height="24"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 Sept, 2019" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9t-qt-iGz">
-                                                            <rect key="frame" x="235" y="10" width="120" height="21"/>
+                                                            <rect key="frame" x="274" y="10" width="120" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="120" id="YHV-WL-ZjD"/>
                                                             </constraints>
@@ -48,7 +48,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Intergation of login, register and logout features in the app by Monday" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="6J3-nW-uyL">
-                                                            <rect key="frame" x="20" y="37" width="335" height="37.5"/>
+                                                            <rect key="frame" x="20" y="37" width="374" height="37.5"/>
                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -83,26 +83,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-wH-jWR">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="N74-Yn-qsy" firstAttribute="trailing" secondItem="SlG-X8-85v" secondAttribute="trailing" id="HPb-3m-dw1"/>
                             <constraint firstItem="N74-Yn-qsy" firstAttribute="top" secondItem="SlG-X8-85v" secondAttribute="top" id="Vwf-qP-AkN"/>
                             <constraint firstItem="N74-Yn-qsy" firstAttribute="leading" secondItem="SlG-X8-85v" secondAttribute="leading" id="aNf-Jb-pPQ"/>
-                            <constraint firstItem="9Kb-wH-jWR" firstAttribute="centerY" secondItem="n9U-KN-o2h" secondAttribute="centerY" id="c8p-yG-hmp"/>
                             <constraint firstItem="SlG-X8-85v" firstAttribute="bottom" secondItem="N74-Yn-qsy" secondAttribute="bottom" id="mPv-zm-QU3"/>
-                            <constraint firstItem="9Kb-wH-jWR" firstAttribute="centerX" secondItem="n9U-KN-o2h" secondAttribute="centerX" id="rp8-lS-sQU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SlG-X8-85v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="In-Progress" image="inProgressIcon" landscapeImage="inProgressIcon" largeContentSizeImage="inProgressIcon" id="YtM-9P-8Ag"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="9Kb-wH-jWR" id="sVw-Bj-xjD"/>
                         <outlet property="taskTable" destination="N74-Yn-qsy" id="2v3-Pn-pZp"/>
                     </connections>
                 </viewController>

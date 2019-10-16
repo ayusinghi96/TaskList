@@ -10,6 +10,8 @@ import Foundation
 
 class APIClientCalls {
 
+    static let Cache = NSCache<NSString, NSData>()
+
     // Creating ClientTask for POST METHODS
     class func taskForPOSTRequest<RequestType:Encodable, ResponseType:Decodable, ErrorResponseType:Decodable>(url: URL, authToken: String?, body: RequestType?, responseType: ResponseType.Type, errorResponseType: ErrorResponseType.Type, completionHandler: @escaping (Bool, ResponseType?, ErrorResponseType?, Error?) -> Void) {
 
@@ -17,19 +19,22 @@ class APIClientCalls {
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+
         if body != nil {
+
             request.httpBody = try! JSONEncoder().encode(body)
         }
         if authToken != nil {
+
             request.addValue(authToken!, forHTTPHeaderField: "Authorization")
         }
-
 
         // Creating a URLSession task to perfrom the request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             // Checking to see if data returned is null
             guard let data = data else {
+
                 completionHandler(false, nil, nil, error)
                 return
             }
@@ -38,25 +43,30 @@ class APIClientCalls {
             let httpResponse = response as! HTTPURLResponse
 
             if httpResponse.statusCode == 200 {
+
                 do {
+
                     let decoder = JSONDecoder()
                     let responseObject = try decoder.decode(ResponseType.self, from: data)
 
                     completionHandler(true, responseObject, nil, nil)
                 } catch {
+
                     completionHandler(false, nil, nil, error)
                 }
             } else {
+
                 do {
+
                     let decoder = JSONDecoder()
                     let responseObject = try decoder.decode(ErrorResponseType.self, from: data)
 
                     completionHandler(false, nil, responseObject, nil)
                 } catch {
+
                     completionHandler(false, nil, nil, error)
                 }
             }
-
         }
         task.resume()
     }
@@ -75,33 +85,41 @@ class APIClientCalls {
 
             // Checking to see if data returned is null
             guard let data = data else {
+
                 completionHandler(false, nil, nil, error)
                 return
             }
+
+            APIClientCalls.Cache.setObject(data as NSData, forKey: url.absoluteString as NSString)
 
             // Decoding and reading the JSONResponse from above data
             let httpResponse = response as! HTTPURLResponse
 
             if httpResponse.statusCode == 200 {
+
                 do {
+
                     let decoder = JSONDecoder()
                     let responseObject = try decoder.decode(ResponseType.self, from: data)
 
                     completionHandler(true, responseObject, nil, nil)
                 } catch {
+
                     completionHandler(false, nil, nil, error)
                 }
             } else {
+
                 do {
+
                     let decoder = JSONDecoder()
                     let responseObject = try decoder.decode(ErrorResponseType.self, from: data)
 
                     completionHandler(false, nil, responseObject, nil)
                 } catch {
+
                     completionHandler(false, nil, nil, error)
                 }
             }
-
         }
         task.resume()
     }

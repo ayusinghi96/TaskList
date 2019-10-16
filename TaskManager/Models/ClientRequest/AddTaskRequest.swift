@@ -19,6 +19,5 @@ struct AddTaskRequest: Codable {
         case taskTitle = "title"
         case taskDescription = "description"
         case taskCreatedOn = "created_on"
-
     }
 }

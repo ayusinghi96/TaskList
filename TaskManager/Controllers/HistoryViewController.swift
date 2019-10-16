@@ -15,47 +15,50 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
 
     // Variables
-    // 3d Array of type TASK
-    var tasks = [TaskObj]()
-    var days = 30
+    var historyTasks = [TaskObj]()
 
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        // Setting the table delegates and datasource
+        // Setting the table Delegate and DataSource
         taskHistoryTable.delegate = self
         taskHistoryTable.dataSource = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
 
         // TODO: Make API Calls
-        ApiClientTask.downloadTask(url: createURL(), completionHandler: handleResponse(bool:error:message:tasks:))
+        let days = 30
 
-        taskHistoryTable.reloadData()
+        // Making API call to get tasks
+        ApiClientTask.getTask(url: createURL(days: days), completionHandler: handleResponse(bool:error:message:tasks:))
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "popUpSegue" {
+    // MARK: Helpers
 
-            let popUp = segue.destination as! DaysPopUpViewController
-            popUp.onSave = onSave
+    // Create request URL
+    func createURL(days: Int) -> URL {
 
-        }
-    }
-
-    func createURL() -> URL {
         var url = ApiClientTask.UrlEndpoints.getTaskHistory.stringValue
         url = url+String(days)
+        print(url)
         return URL(string: url)!
     }
 
-    func onSave(_ days: Int) -> Void {
-        self.days = days
-        ApiClientTask.downloadTask(url: createURL(), completionHandler: handleResponse(bool:error:message:tasks:))
+    // MARK: Handlers
+    // Handler function for filtering days
+    func onDaysSelectedFromFilter(_ days: Int) -> Void {
+
+        // Making API call to get tasks
+        ApiClientTask.getTask(url: createURL(days: days), completionHandler: handleResponse(bool:error:message:tasks:))
     }
 
+    // Handling API responses
     func handleResponse(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?) {
 
+        // If task data is returned
         if bool {
 
             // Safely guarding the nullable tasks
@@ -64,21 +67,33 @@ class HistoryViewController: UIViewController {
             }
 
             // if the an empty task array is returned inform the user
-            if tasks.count == 0 {
-                // Alert Dailog to infrom the user
-                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have no tasks older than 7 days!")
-              
-            }
+//            if tasks.count == 0 {
+//
+//                // Alert Dailog to infrom the user
+//                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have no tasks older than 7 days!")
+//
+//            }
 
-            // TODO: See the proper updating of the task array
-            self.tasks = tasks
+            // Inflating the historyTask list with response and reloading tableView
+            self.historyTasks = tasks
             self.taskHistoryTable.reloadData()
         } else {
+
+            // Notifying user of errors
             CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message!)
         }
-
     }
 
+    // MARK: Navigation
+
+    // Preparing the popUpVC before it appears
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popUpSegue" {
+
+            let popUp = segue.destination as! DaysPopUpViewController
+            popUp.onApplyFilter = onDaysSelectedFromFilter
+        }
+    }
 }
 
 // MARK: Extensions
@@ -86,11 +101,13 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
     // Getting the number of rows in each section in the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+
+        return historyTasks.count
     }
 
     // Getting the number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
+
         return 1
     }
 
@@ -98,46 +115,22 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyTableCell") as! HistoryTaskTableViewCell
-        let currentTask = tasks[indexPath.row]
+        let currentTask = historyTasks[indexPath.row]
 
         cell.setCell(title: currentTask.title, date: currentTask.date, state: currentTask.state)
 
         return cell
     }
 
-    // Setting the section header title and customizing the header
-    // Providing the custom view to be displayed
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//        let view = UIView()
-//        let sectionTitle = UILabel()
-//
-//        sectionTitle.frame = CGRect(x: 10, y: 5, width: 200, height: 35)
-//        sectionTitle.textColor = UIColor.white
-//        sectionTitle.font = UIFont(name: "Helvetica", size: 20)
-//        sectionTitle.text = Section[section]
-//
-//        view.backgroundColor = UIColor.lightGray
-//        view.addSubview(sectionTitle)
-//
-//        return view
-//    }
-
-    // Return the height of each section header
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 45
-//    }
-
     // Setting up the viewController to be displayed on selecting a particular table row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
-        let currentTask = tasks[indexPath.row]
 
+        let currentTask = historyTasks[indexPath.row]
         taskDetailVC.task = currentTask
 
         self.navigationController?.pushViewController(taskDetailVC, animated: true)
-
     }
 
 }

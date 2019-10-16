@@ -10,7 +10,6 @@ import UIKit
 
 class AddTaskViewController: UIViewController {
 
-
     // MARK: Properties
     @IBOutlet weak var descriptionField: UITextView!
     @IBOutlet weak var titleField: UITextField!
@@ -35,50 +34,54 @@ class AddTaskViewController: UIViewController {
         // Setting delegates for UITextView and UITextField
         titleField.delegate = self
         descriptionField.delegate = self
-
-
     }
 
     // Resigning the first responder status of textView on touching anywhere outside the textView
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+
         self.descriptionField.resignFirstResponder()
     }
 
-
     // MARK: Actions
+
+    // Adding a new task
     @IBAction func AddTask(_ sender: Any) {
 
-        // Disabling the UI elements
-        // to stop user from creating multiple request and
-        //change the text during the background processes
-        
+        // Disabling UIElements
         changeUIElementEnableState(enable: false)
 
-        // Making the API call if the user is title is mentioned
+        // Checking if taskTitle is mentioned
         if taskTitle != "" && titleField.text != nil {
 
+            // Setting up date format
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd hh:mm:ss"
             let taskDateTime = df.string(from: Date())
-            ApiClientTask.addTask(title: taskTitle, description: taskDescription, date: taskDateTime, completionHandler: addTaskHandler(bool:error:message:task:))
 
+            // Making API call to add task
+            ApiClientTask.addTask(title: taskTitle, description: taskDescription, date: taskDateTime, completionHandler: addTaskHandler(bool:error:message:task:))
         } else {
-            // Presenting an alert controller otherwise
+
+            // Notifying user of errors
             CommonAppFunction.showAlertDailog(view: self, title: "Required", message: "Title Field cannot be empty!")
         }
 
-        // Enabling the UI Elements once appropriate task is completed
+        // Enabling UIElements
         changeUIElementEnableState(enable: true)
     }
 
+    // Dismissing the view on pressing back button
     @IBAction func BackPressed(_ sender: Any) {
+
         self.dismiss(animated: true, completion: nil)
     }
 
     //MARK: Helpers
-    
-    func changeUIElementEnableState(enable: Bool){
+
+    // Changing state of UIElements on add task button pressed
+    func changeUIElementEnableState(enable: Bool) {
+
         titleField.isEnabled = enable
         descriptionField.isEditable = enable
         addTaskButton.isEnabled = enable
@@ -86,17 +89,20 @@ class AddTaskViewController: UIViewController {
 
     // MARK: Handlers
 
+    // Handling the response
     func addTaskHandler(bool: Bool, error: Error?, message: String, task: TaskObj?) {
+
+        // if a task is returned
         if bool {
             guard let task = task else {
                 return
             }
 
             AppDelegate.tasks.append(task)
-            CommonAppFunction.showAlertDailog(view: self, title: "Success", message: message) {
-                self.dismiss(animated: true, completion: nil)
-            }
+            self.dismiss(animated: true, completion: nil)
         } else {
+
+            // Notifying user of errors
             CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
     }
@@ -104,41 +110,44 @@ class AddTaskViewController: UIViewController {
 
 // MARK: Extensions
 
-// UITextField Delegates
+// Extension for UITextField Delegates
 extension AddTaskViewController: UITextFieldDelegate {
 
-    // Resigning the first responder on Enter
+    // Resigning the first responder on pressing enter
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         textField.resignFirstResponder()
         return true
     }
 
     // Stopping the textView from clearing the already entered data
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
+
         return false
     }
 
-    // Getting the title value whent the editting stops
+    // Getting the title value when the editing stops
     func textFieldDidEndEditing(_ textField: UITextField) {
 
-        // Safely unwrapping the optional value of the task title field
+        // Safely extracting value of task title field
         guard let title = textField.text else {
             return
         }
 
         taskTitle = title
-
     }
 }
 
-// UITextView Delegates
+// Extension for UITextView Delegates
 extension AddTaskViewController: UITextViewDelegate {
 
     // Removing the placeholder text when the user starts editing the textView
     func textViewDidBeginEditing(_ textView: UITextView) {
+
         // Removing the placeholder iff it is currentlty equal to placeholder text
         // else leaving the textview as it is to let user entered text persist
         if textView.text! == "Enter the description of your task!" {
+
             textView.text = nil
             textView.textColor = UIColor.black
         }
@@ -150,12 +159,12 @@ extension AddTaskViewController: UITextViewDelegate {
         // If the user entered data is blank string then re-show the placeholder text
         // else unwrapping the text entered by the user
         if textView.text! == "" {
+
             textView.text = "Enter the description of your task!"
             textView.textColor = UIColor.init(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1)
         } else {
+
             taskDescription = textView.text!
         }
-
     }
-
 }

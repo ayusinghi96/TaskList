@@ -30,7 +30,6 @@ class APIEndpoints {
 
         // List of profileEndpooints
         static let UserProfile = "auth/user"
-
     }
 }
 

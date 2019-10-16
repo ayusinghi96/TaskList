@@ -10,8 +10,6 @@ import Foundation
 
 class ApiClientTask {
 
-    static let Cache = NSCache<NSString, AnyObject>()
-
     // MARK: Endpoints
 
     // Creation of AuthEndpointURL
@@ -26,7 +24,9 @@ class ApiClientTask {
         case getTaskHistory
 
         var stringValue: String {
+
             switch self {
+
             case .addTask: return APIEndpoints.EndpointStringURL.BaseUrl + APIEndpoints.EndpointStringURL.AddTask
 
             case .getTask: return APIEndpoints.EndpointStringURL.BaseUrl + APIEndpoints.EndpointStringURL.GetTask
@@ -47,6 +47,7 @@ class ApiClientTask {
     // MARK: Actions
 
     // MARK: POST
+
     // Adding a new task to the database (POST)
     class func addTask(title: String, description: String, date: String, completionHandler: @escaping(Bool, Error?, String, TaskObj?) -> Void) {
 
@@ -61,14 +62,18 @@ class ApiClientTask {
             DispatchQueue.main.async {
 
                 if response == nil && errorResponse == nil {
+
                     completionHandler(false, error, "Some error occured, try again!", nil)
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
                         completionHandler(true, nil, "Task Added successfully", response.task)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
@@ -89,15 +94,19 @@ class ApiClientTask {
             DispatchQueue.main.async {
 
                 if response == nil && errorResponse == nil {
+
                     completionHandler(false, error, "Some error occured, try again!")
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
 
                         completionHandler(true, nil, response.message)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
@@ -119,16 +128,20 @@ class ApiClientTask {
 
             // Handling response
             DispatchQueue.main.async {
+
                 if response == nil && errorResponse == nil {
+
                     completionHandler(false, error, "Some error occured, try again!", nil)
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
-
                         completionHandler(true, nil, nil, response.task)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
@@ -139,23 +152,25 @@ class ApiClientTask {
         }
     }
 
+
+    class func getTask(url: URL, completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void) {
+
+        guard let data = APIClientCalls.Cache.object(forKey: url.absoluteString as NSString) else {
+
+            downloadTask(url: url, completionHandler: completionHandler)
+            return
+        }
+
+        do {
+
+            let decoder = JSONDecoder()
+            let responseObject = try decoder.decode(GetTaskResponse.self, from: data as Data)
+
+            completionHandler(true, nil, nil, responseObject.task)
+        } catch {
+
+            downloadTask(url: url, completionHandler: completionHandler)
+        }
+    }
+
 }
-
-//    class func getTask(url: URL, completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void){
-//        guard let data = cache.object(forKey: url.absoluteString as NSString) else {
-//            downloadTask(url:url, completionHandler:)
-//            return
-//        }
-//
-//    }
-//
-//    class func nsdataToJSON(data: NSData) -> Any? {
-//        return try! JSONSerialization.jsonObject(with: data as Data, options: .mutableLeaves) as Any
-//    }
-//
-//    class func jsonToNSData(json: Any) -> NSData?{
-//        return try! JSONSerialization.data(withJSONObject: json) as NSData
-//    }
-//}
-
-

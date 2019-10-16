@@ -10,6 +10,7 @@ import Foundation
 
 
 struct ChangeTaskStateToDone: Codable {
+
     let taskId: String
 
     enum CodingKeys: String, CodingKey {
@@ -19,10 +20,12 @@ struct ChangeTaskStateToDone: Codable {
 }
 
 struct ChangeTaskStateToCancel: Codable {
+
     let taskId: String
     let reason: String
 
     enum CodingKeys: String, CodingKey {
+
         case reason
         case taskId = "_id"
     }

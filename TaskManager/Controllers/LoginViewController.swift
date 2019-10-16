@@ -21,8 +21,10 @@ class LoginViewController: UIViewController {
 
     // MARK: Overrides
 
+    // Checking if user is already logged-in
     override func loadView() {
         super.loadView()
+
         if UserDefaults.standard.string(forKey: "authToken") != "" {
             ApiClientAuth.RequestToken = UserDefaults.standard.string(forKey: "authToken")!
             self.performSegue(withIdentifier: "LoginUserSegue", sender: self)
@@ -39,7 +41,6 @@ class LoginViewController: UIViewController {
         // Setting textfield delegates
         userNameField.delegate = self
         userPasswordField.delegate = self
-
     }
 
     // MARK: Actions
@@ -49,29 +50,32 @@ class LoginViewController: UIViewController {
 
         // Safely extracting the credentials
         guard userNameField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter your username!")
             return
         }
         guard userPasswordField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter your password!")
             return
         }
 
-        // Strating the activity indicator before network call
+        // Starting the activity indicator before network call
         activityIndicator = CommonAppFunction.showActivityIndicator(view: view)
         activityIndicator?.startAnimating()
-        
+
+        // Diabling UIElements
         changeUIElementEnableState(enable: false)
 
-        // Calling the API function login to handel login request
+        // Making API call to authenticate User
         ApiClientAuth.loginUser(userName: userNameField.text!, password: userPasswordField.text!, completionHandler: handleUserLogin(bool:error:message:))
-
     }
 
     // MARK: Helpers
 
-    // Change state of the UIElements on login button pressed
+    // Changing state of the UIElements on login button pressed
     func changeUIElementEnableState(enable: Bool) {
+
         userNameField.isEnabled = enable
         userPasswordField.isEnabled = enable
         userLoginButton.isEnabled = enable
@@ -83,18 +87,24 @@ class LoginViewController: UIViewController {
     // Login handler function
     func handleUserLogin(bool: Bool, error: Error?, message: String?) {
 
+        // Stoping the activity indicator before network call
         activityIndicator?.stopAnimating()
 
         if bool {
-            ApiClientAuth.RequestToken = UserDefaults.standard.string(forKey: "authToken")!
+
+            // Logging user in
             self.performSegue(withIdentifier: "LoginUserSegue", sender: self)
         } else {
+
             guard let message = message else {
                 return
             }
+
+            // Notifying user of errors
             CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
-        
+
+        // Enabling UIElements
         changeUIElementEnableState(enable: true)
     }
 }
@@ -103,6 +113,7 @@ class LoginViewController: UIViewController {
 // Extension handling the TextField delegate
 extension LoginViewController: UITextFieldDelegate {
 
+    // Resigning first responder on pressing return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

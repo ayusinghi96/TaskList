@@ -79,19 +79,24 @@ class ApiClientAuth {
 
             // Handling response
             DispatchQueue.main.async {
+
                 if response == nil && errorResponse == nil {
+
                     completionHandler(false, error, "Some error occured!")
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
 
                         ApiClientAuth.RequestToken = response.token
                         UserDefaults.standard.set(ApiClientAuth.RequestToken, forKey: "authToken")
-                        print("auth-\(ApiClientAuth.RequestToken)")
+
                         completionHandler(true, nil, nil)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
@@ -115,10 +120,14 @@ class ApiClientAuth {
 
             // Handling response
             DispatchQueue.main.async {
+
                 if response != nil && errorResponse != nil {
+
                     completionHandler(false, error, "Some error occured!")
                 } else {
+
                     if bool {
+
                         guard let response = response else {
                             return
                         }
@@ -127,6 +136,7 @@ class ApiClientAuth {
                         UserDefaults.standard.set(ApiClientAuth.RequestToken, forKey: "authToken")
                         completionHandler(true, nil, response.message)
                     } else {
+
                         guard let errorResponse = errorResponse else {
                             return
                         }
@@ -134,7 +144,6 @@ class ApiClientAuth {
                     }
                 }
             }
-
         }
     }
 }

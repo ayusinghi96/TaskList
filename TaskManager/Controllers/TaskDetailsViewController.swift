@@ -28,21 +28,28 @@ class TaskDetailsViewController: UIViewController {
         customizeTextView(descriptionTextView)
         customizeTextView(reasonTextView)
 
-        // Check if reason stack needs to be hidden
+        // Checking if reason stack needs to be hidden
         if task?.state != "cancel" {
+
             reasonStack.isHidden = true
         } else {
+
             // Safely extracting the Cancellation Reason
             guard let reason = task?.reason else {
+
                 reasonTextView.text = "No reason to show!"
                 return
             }
+
+            // Populating the reason text view
             reasonTextView.text = reason
         }
 
         // Processing the date title based on task state
         var dateString: String {
+
             switch task?.state {
+
             case "cancel": return "Cancelled on: "
             case "created": return "Created on: "
             case "done": return "Completed on: "
@@ -50,20 +57,29 @@ class TaskDetailsViewController: UIViewController {
             }
         }
 
-        // Setting the content on various elements
+        // Populating different UIElements
         titleLabel.text = task?.title
         descriptionTextView.text = task?.description
+
+        // Safely extracting the task dateTime
         guard let date = task?.date else {
             return
         }
-        dateLabel.text = dateString + date
+
+        // Trimming dateTime to required size
+        let formattedDate = date[..<(date.index(date.startIndex, offsetBy: 10))]
+
+        // Populating dateLable element
+        dateLabel.text = dateString + formattedDate
 
     }
 
     // MARK: Helpers
+
     // Function to customize TextViews
     func customizeTextView(_ textView: UITextView) {
 
+        // Customizing the textview
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.init(red: 230 / 255, green: 230 / 255, blue: 230 / 255, alpha: 1).cgColor
         textView.layer.cornerRadius = 5

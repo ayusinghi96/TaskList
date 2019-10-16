@@ -32,7 +32,6 @@ class RegisterViewController: UIViewController {
         userEmailField.delegate = self
         userPasswordField.delegate = self
         userPasswordMatchField.delegate = self
-
     }
 
     // MARK: Actions
@@ -42,66 +41,74 @@ class RegisterViewController: UIViewController {
 
         // Safely unwrapping the user entered data
         guard userNameField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a username!")
             return
         }
         guard userEmailField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a email address!")
             return
         }
         guard userPasswordField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a password!")
             return
         }
         guard userPasswordMatchField.text != "" else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a password!")
             return
         }
 
+        // If enetered email is valid
         if isEmailValid(enteredEmail: userEmailField.text!) {
+
             // if two entered password are same
             if isPasswordMatching(userPasswordField.text!, userPasswordMatchField.text!) {
 
                 // Strating the activity indicator before network call
-
                 activityIndicator = CommonAppFunction.showActivityIndicator(view: view)
                 activityIndicator?.startAnimating()
-                
+
                 // Disabling the UIElements to stop changes while processing one request
                 changeUIElementEnableState(enable: false)
 
-                // Calling the API function registerUser to handel register request
+                // Making API to registerUser
                 ApiClientAuth.registerUser(userName: userNameField.text!, email: userEmailField.text!, password: userPasswordField.text!, completionHandler: handleUserRegister(bool:message:error:))
-
             } else {
+
                 CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Passwords do not match!")
             }
         } else {
+
             CommonAppFunction.showAlertDailog(view: self, title: "Error", message: "Enter a correct Email address")
         }
     }
 
-
     // MARK: Helpers
 
+    // Validating E-mail
     func isEmailValid(enteredEmail: String) -> Bool {
 
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
         return emailPredicate.evaluate(with: enteredEmail)
-
     }
 
-    // checking if the two passwords are same
+    // Checking if the two passwords are same
     func isPasswordMatching(_ userPassword: String, _ userPasswordMatch: String) -> Bool {
 
         if userPassword == userPasswordMatch {
+
             return true
         } else {
+
             return false
         }
     }
 
+    // Changing state of the UIElements on register button pressed
     func changeUIElementEnableState(enable: Bool) {
 
         userNameField.isEnabled = enable
@@ -116,18 +123,23 @@ class RegisterViewController: UIViewController {
 
     // Register handler function to complete the end process of notifying user
     func handleUserRegister(bool: Bool, message: String, error: Error?) {
-        
+
+        // Stoping activity indicator
         activityIndicator?.stopAnimating()
-        
+
         if bool {
+
+            // On confirmation go back to login view
             CommonAppFunction.showAlertDailog(view: self, title: "Success", message: message) {
+
                 self.navigationController?.popViewController(animated: true)
             }
-            
         } else {
-            
+
             CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message)
         }
+
+        // Enabling UIElements
         self.changeUIElementEnableState(enable: true)
     }
 }
@@ -137,6 +149,7 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
         textField.resignFirstResponder()
         return true
     }

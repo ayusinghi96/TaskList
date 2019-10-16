@@ -9,6 +9,7 @@
 import Foundation
 
 struct ChangeTaskStateResponse: Codable {
+    
     let message: String
     let status: Int
 
@@ -16,6 +17,5 @@ struct ChangeTaskStateResponse: Codable {
 
         case message
         case status
-
     }
 }

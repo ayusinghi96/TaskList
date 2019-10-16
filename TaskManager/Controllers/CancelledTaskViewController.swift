@@ -10,25 +10,31 @@ import UIKit
 
 class CancelledTaskViewController: UIViewController {
 
+    // MARK: Properties
     @IBOutlet weak var cancelledTaskTable: UITableView!
 
+    // Variables
     var cancelledTasks = [TaskObj]()
 
+    // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setting-up tableView delegate adn dataSource
         cancelledTaskTable.delegate = self
         cancelledTaskTable.dataSource = self
-
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
+        // Making API call to get tasks
         ApiClientTask.downloadTask(url: URL(string: ApiClientTask.UrlEndpoints.getCancelledTask.stringValue)!, completionHandler: handleResponse(bool:error:message:tasks:))
+
     }
 
+    // MARK: Handlers
+    // Handling API response
     func handleResponse(bool: Bool, error: Error?, message: String?, tasks: [TaskObj]?) {
 
         // If task data is returned
@@ -40,33 +46,43 @@ class CancelledTaskViewController: UIViewController {
             }
 
             // if the an empty task array is returned inform the user
-            if tasks.count == 0 {
-                
-                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have not cancelled any task!")
-                
-            }
+//            if tasks.count == 0 {
+//
+//                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have not cancelled any task!")
+//
+//            }
+
+            // Inflating the cancelled task list with response list
             self.cancelledTasks = tasks
+            // Reloading the tableView
             self.cancelledTaskTable.reloadData()
-            
         } else {
+
+            // Notifying user of errors in calling API
             CommonAppFunction.showAlertDailog(view: self, title: "Failure", message: message!)
         }
     }
-
 }
 
+
+// Extension handling the tableView Delegates and DataSource
 extension CancelledTaskViewController: UITableViewDelegate, UITableViewDataSource {
 
+    // Setting up number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return cancelledTasks.count
     }
 
+    // Setting up number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
+
         return 1
     }
 
-    // Inflate the data into the prototype cell and present the rows
+    // Inflating data into the prototype cell and present the rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskHolder") as! TaskTableViewCell
         let currentTask = cancelledTasks[indexPath.row]
 
@@ -75,12 +91,12 @@ extension CancelledTaskViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
 
-
+    // Presenting taskDetailVC when user presses on a row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let taskDetailVC = UIStoryboard(name: "TaskDetail", bundle: nil).instantiateViewController(withIdentifier: "TaskDetailsViewController") as! TaskDetailsViewController
-        let currentTask = cancelledTasks[indexPath.row]
 
+        let currentTask = cancelledTasks[indexPath.row]
         taskDetailVC.task = currentTask
 
         self.navigationController?.pushViewController(taskDetailVC, animated: true)

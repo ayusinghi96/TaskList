@@ -9,10 +9,12 @@
 import Foundation
 
 struct GetTaskErrorResponse: Codable {
+    
     let message: String
     let status: Int
 
     enum CodingKeys: String, CodingKey {
+        
         case message
         case status
     }
