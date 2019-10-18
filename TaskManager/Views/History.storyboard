@@ -15,7 +15,7 @@
         <scene sceneID="bzT-q9-Cc0">
             <objects>
                 <viewController storyboardIdentifier="DaysPopUpViewController" id="FZM-ZD-bYf" customClass="DaysPopUpViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.80000000000000004" contentMode="scaleToFill" id="Un8-Lx-zqK">
+                    <view key="view" alpha="0.90000000000000002" contentMode="scaleToFill" id="Un8-Lx-zqK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

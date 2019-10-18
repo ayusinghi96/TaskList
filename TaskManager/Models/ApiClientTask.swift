@@ -151,24 +151,55 @@ class ApiClientTask {
             }
         }
     }
-
-
-    class func getTask(url: URL, completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void) {
-
+    
+    
+    class func downloadHistoryTask(url: URL, completionHandler: @escaping (Bool, Error?, TaskHistoryResponse?, TaskHistoryErrorResponse?) -> Void) {
+        
+        // Creating network call
+        APIClientCalls.taskForGETRequest(url: url, authToken: ApiClientAuth.RequestToken, responseType: TaskHistoryResponse.self, errorResponseType: TaskHistoryErrorResponse.self) { (bool, response, errorResponse, error) in
+            
+            // Handling response
+            DispatchQueue.main.async {
+                
+                if response == nil && errorResponse == nil {
+                    
+                    completionHandler(false, error, nil, nil)
+                } else {
+                    
+                    if bool {
+                        
+                        guard let response = response else {
+                            return
+                        }
+                        completionHandler(true, nil, response, nil)
+                    } else {
+                        
+                        guard let errorResponse = errorResponse else {
+                            return
+                        }
+                        completionHandler(false, nil, nil, errorResponse)
+                    }
+                }
+            }
+        }
+    }
+    
+    class func getHistoryTask(url: URL, completionHandler: @escaping (Bool, Error?, String?, [TaskObj]?) -> Void) {
+        
         guard let data = APIClientCalls.Cache.object(forKey: url.absoluteString as NSString) else {
-
+            
             downloadTask(url: url, completionHandler: completionHandler)
             return
         }
-
+        
         do {
-
+            
             let decoder = JSONDecoder()
             let responseObject = try decoder.decode(GetTaskResponse.self, from: data as Data)
-
+            
             completionHandler(true, nil, nil, responseObject.task)
         } catch {
-
+            
             downloadTask(url: url, completionHandler: completionHandler)
         }
     }

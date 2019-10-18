@@ -132,5 +132,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
         self.navigationController?.pushViewController(taskDetailVC, animated: true)
     }
-
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        
+    }
 }

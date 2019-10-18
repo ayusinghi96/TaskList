@@ -75,26 +75,46 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-mB-tQb">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-mB-tQb">
                                 <rect key="frame" x="151" y="508.5" width="112.5" height="122"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN-Bold" family="Oriya Sangam MN" pointSize="87"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Tasks Handled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Os-bMU">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Tasks Handled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-Os-bMU">
                                 <rect key="frame" x="108.5" y="461" width="197" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jun-KV-7ZO" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="4" y="452" width="406" height="406"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IX-pg-c1B">
+                                        <rect key="frame" x="171.5" y="167.5" width="63" height="31.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jun-KV-7ZO" secondAttribute="height" multiplier="1:1" id="5ge-VD-qAm"/>
+                                    <constraint firstItem="6IX-pg-c1B" firstAttribute="centerY" secondItem="jun-KV-7ZO" secondAttribute="centerY" constant="-20" id="QYA-4d-8Wn"/>
+                                    <constraint firstItem="6IX-pg-c1B" firstAttribute="centerX" secondItem="jun-KV-7ZO" secondAttribute="centerX" id="gX1-b9-Ppd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7Gg-TK-IAu" firstAttribute="leading" secondItem="0Xe-aD-UHj" secondAttribute="leading" constant="20" id="13g-Cu-rOb"/>
                             <constraint firstItem="7Gg-TK-IAu" firstAttribute="top" secondItem="4XN-0U-0eT" secondAttribute="bottom" constant="50" id="3kU-h0-gbd"/>
+                            <constraint firstItem="0Xe-aD-UHj" firstAttribute="trailing" secondItem="jun-KV-7ZO" secondAttribute="trailing" constant="4" id="5wK-w5-2cF"/>
                             <constraint firstItem="mOr-mB-tQb" firstAttribute="top" secondItem="h8y-Os-bMU" secondAttribute="bottom" constant="20" id="Ivy-FO-AuX"/>
                             <constraint firstItem="0Xe-aD-UHj" firstAttribute="trailing" secondItem="4XN-0U-0eT" secondAttribute="trailing" id="Jhp-5h-p49"/>
+                            <constraint firstItem="jun-KV-7ZO" firstAttribute="leading" secondItem="0Xe-aD-UHj" secondAttribute="leading" constant="4" id="LTn-b4-Kzj"/>
                             <constraint firstItem="h8y-Os-bMU" firstAttribute="top" secondItem="7Gg-TK-IAu" secondAttribute="bottom" constant="40" id="Lal-VN-Kb6"/>
+                            <constraint firstItem="0Xe-aD-UHj" firstAttribute="bottom" secondItem="jun-KV-7ZO" secondAttribute="bottom" constant="4" id="O3e-ZQ-aRS"/>
                             <constraint firstItem="4XN-0U-0eT" firstAttribute="leading" secondItem="0Xe-aD-UHj" secondAttribute="leading" id="P2E-dr-upZ"/>
                             <constraint firstItem="h8y-Os-bMU" firstAttribute="centerX" secondItem="F1n-xG-sqd" secondAttribute="centerX" id="PHg-ci-j1q"/>
                             <constraint firstItem="h8y-Os-bMU" firstAttribute="centerX" secondItem="F1n-xG-sqd" secondAttribute="centerX" id="byU-bP-zzz"/>
@@ -115,13 +135,14 @@
                     <connections>
                         <outlet property="profileImage" destination="faT-eb-o3S" id="mr3-LT-TJX"/>
                         <outlet property="taskHandledLabel" destination="mOr-mB-tQb" id="W6x-Uv-JN6"/>
+                        <outlet property="taskPieChart" destination="jun-KV-7ZO" id="SET-ab-WAy"/>
                         <outlet property="userEmailLabel" destination="HlV-kj-SgS" id="rND-QP-xDt"/>
                         <outlet property="userNameLabel" destination="7IQ-p9-vTY" id="KqV-WL-76F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxP-o2-tpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3609" y="-848"/>
+            <point key="canvasLocation" x="3608.6956521739135" y="-848.4375"/>
         </scene>
     </scenes>
     <resources>
