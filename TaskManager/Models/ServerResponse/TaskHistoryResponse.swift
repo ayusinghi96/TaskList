@@ -12,8 +12,8 @@ import Foundation
 struct TaskHistoryResponse: Codable {
     
     let count: Int
-    let nextURL: URL?
-    let previousURL: URL?
+    let nextURL: String?
+    let previousURL: String?
     let tasks: [TaskObj]
     
     enum CodingKeys: String, CodingKey {

@@ -89,19 +89,9 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jun-KV-7ZO" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="4" y="452" width="406" height="406"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IX-pg-c1B">
-                                        <rect key="frame" x="171.5" y="167.5" width="63" height="31.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jun-KV-7ZO" secondAttribute="height" multiplier="1:1" id="5ge-VD-qAm"/>
-                                    <constraint firstItem="6IX-pg-c1B" firstAttribute="centerY" secondItem="jun-KV-7ZO" secondAttribute="centerY" constant="-20" id="QYA-4d-8Wn"/>
-                                    <constraint firstItem="6IX-pg-c1B" firstAttribute="centerX" secondItem="jun-KV-7ZO" secondAttribute="centerX" id="gX1-b9-Ppd"/>
                                 </constraints>
                             </view>
                         </subviews>

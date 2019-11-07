@@ -63,16 +63,17 @@ class HistoryViewController: UIViewController {
 
             // Safely guarding the nullable tasks
             guard let tasks = tasks else {
+                CommonAppFunction.showAlertDailog(view: self, title: "Message", message: "Error")
                 return
             }
 
             // if the an empty task array is returned inform the user
-//            if tasks.count == 0 {
-//
-//                // Alert Dailog to infrom the user
-//                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have no tasks older than 7 days!")
-//
-//            }
+            if tasks.count == 0 {
+
+                // Alert Dailog to infrom the user
+                CommonAppFunction.showAlertDailog(view: self, title: "No Tasks", message: "You have no tasks older than 7 days!")
+
+            }
 
             // Inflating the historyTask list with response and reloading tableView
             self.historyTasks = tasks

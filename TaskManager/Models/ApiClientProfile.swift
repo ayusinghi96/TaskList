@@ -26,7 +26,7 @@ class ApiClientProfile {
 
     // MARK: Actions
 
-    class func getUserProfile(completionHandler: @escaping (Bool, Error?, String?, UserObj?, Int) -> Void) {
+    class func getUserProfile(completionHandler: @escaping (Bool, Error?, String?, UserObj?, TaskCount?) -> Void) {
 
         let url = URL(string: URLEndpoints.userProfile.stringValue)
 
@@ -35,7 +35,7 @@ class ApiClientProfile {
             DispatchQueue.main.async {
 
                 if response == nil && errorResponse == nil {
-                    completionHandler(false, error, "Some error occured, try again!", nil, 0)
+                    completionHandler(false, error, "Some error occured, try again!", nil, nil)
                 } else {
 
                     if bool {
@@ -49,7 +49,7 @@ class ApiClientProfile {
                         guard let errorResponse = errorResponse else {
                             return
                         }
-                        completionHandler(false, nil, errorResponse.message, nil, 0)
+                        completionHandler(false, nil, errorResponse.message, nil, nil)
                     }
                 }
             }

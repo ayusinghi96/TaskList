@@ -25,12 +25,14 @@ class ProfileViewController: UIViewController {
     
     var numberOfDataEntries: [PieChartDataEntry] = []
 
+    
+    
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Making API call
-        ApiClientProfile.getUserProfile { (bool, error, message, user, tasks) in
+        ApiClientProfile.getUserProfile { (bool, error, message, user, taskCount) in
 
             // Setting up UIElements if user is returned
             if bool {
@@ -43,23 +45,26 @@ class ProfileViewController: UIViewController {
 
                 self.userNameLabel.text = user.username
                 self.userEmailLabel.text = user.email
-                self.taskHandledLabel.text = String(tasks)
+                self.taskHandledLabel.text = String(taskCount!.taskCreated+taskCount!.taskCancelled+taskCount!.taskDone)
+                
+                self.createdTask.value = taskCount!.taskCreated
+                self.createdTask.label = "ON"
+                self.cancelledTask.value = taskCount!.taskCancelled
+                self.cancelledTask.label = "CANCEL"
+                self.completedTask.value = taskCount!.taskDone
+                self.completedTask.label = "DONE"
+                
+                
+                self.numberOfDataEntries = [self.createdTask, self.cancelledTask, self.completedTask]
+                self.chartDataSet()
             }
         }
         
 //        taskPieChart.chartDescription?.text = "Tasks Handled"
 //        taskPieChart.chartDescription?.font = NSUIFont(name: "Arial", size: 17)!
-        
-        createdTask.value = 12
-        createdTask.label = "ON"
-        cancelledTask.value = 10
-        cancelledTask.label = "CANCEL"
-        completedTask.value = 23
-        completedTask.label = "DONE"
-        
-        
-        numberOfDataEntries = [createdTask, cancelledTask, completedTask]
-        chartDataSet()
+       
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CGFloat(30))]
+        taskPieChart.centerAttributedText = NSAttributedString(string: "Tasks", attributes: attributes)
         
     }
 
