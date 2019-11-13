@@ -30,16 +30,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cug-IW-1Ej">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Making the TaskManager App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAa-YH-3a0">
-                                                            <rect key="frame" x="20" y="8" width="210" height="24"/>
+                                                            <rect key="frame" x="20" y="8" width="249" height="24"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 Sept, 2019" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcd-O4-s7t">
-                                                            <rect key="frame" x="235" y="10" width="120" height="21"/>
+                                                            <rect key="frame" x="274" y="10" width="120" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="120" id="5dF-96-Ctc"/>
                                                             </constraints>
@@ -47,8 +47,8 @@
                                                             <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Intergation of login, register and logout features in the app by Monday" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="s16-Zj-O1y">
-                                                            <rect key="frame" x="20" y="37" width="335" height="37.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Intergation of login, register and logout features in the app by Monday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="s16-Zj-O1y">
+                                                            <rect key="frame" x="20" y="37" width="374" height="20.5"/>
                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                                         <constraint firstItem="Bcd-O4-s7t" firstAttribute="top" secondItem="cug-IW-1Ej" secondAttribute="top" constant="10" id="88A-J4-tTd"/>
                                                         <constraint firstItem="s16-Zj-O1y" firstAttribute="top" secondItem="lAa-YH-3a0" secondAttribute="bottom" constant="5" id="BS6-v1-ld3"/>
                                                         <constraint firstItem="lAa-YH-3a0" firstAttribute="leading" secondItem="cug-IW-1Ej" secondAttribute="leading" constant="20" id="Jzq-hH-ean"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s16-Zj-O1y" secondAttribute="bottom" constant="5" id="StF-Lh-Qql"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s16-Zj-O1y" secondAttribute="bottom" id="StF-Lh-Qql"/>
                                                         <constraint firstItem="lAa-YH-3a0" firstAttribute="top" secondItem="cug-IW-1Ej" secondAttribute="top" constant="8" id="jUZ-u6-Me7"/>
                                                         <constraint firstItem="s16-Zj-O1y" firstAttribute="leading" secondItem="cug-IW-1Ej" secondAttribute="leading" constant="20" id="jnJ-98-p1o"/>
                                                         <constraint firstAttribute="trailing" secondItem="Bcd-O4-s7t" secondAttribute="trailing" constant="20" id="wUp-LO-AvC"/>

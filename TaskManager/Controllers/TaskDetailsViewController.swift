@@ -25,8 +25,8 @@ class TaskDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         // Customizing the TextView
-        customizeTextView(descriptionTextView)
-        customizeTextView(reasonTextView)
+//        customizeTextView(descriptionTextView)
+//        customizeTextView(reasonTextView)
 
         // Checking if reason stack needs to be hidden
         if task?.state != "cancel" {

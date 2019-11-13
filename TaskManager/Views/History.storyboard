@@ -128,20 +128,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creation of the Registration Section" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E78-C0-OZI">
-                                                    <rect key="frame" x="20" y="15" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <rect key="frame" x="20" y="15" width="309" height="24"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskDoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7KW-ti-19x">
-                                                    <rect key="frame" x="344" y="15" width="50" height="50"/>
+                                                    <rect key="frame" x="349" y="17.5" width="45" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7KW-ti-19x" secondAttribute="height" multiplier="1:1" id="JDy-Wm-cf5"/>
-                                                        <constraint firstAttribute="height" constant="50" id="dEH-Vw-9ns"/>
+                                                        <constraint firstAttribute="height" constant="45" id="dEH-Vw-9ns"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed on: 26 Sept, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSG-4r-jtR">
-                                                    <rect key="frame" x="20" y="44" width="304" height="21"/>
+                                                    <rect key="frame" x="20" y="47" width="309" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>

@@ -12,7 +12,7 @@ class APIEndpoints {
 
     struct EndpointStringURL {
 
-        static let BaseUrl = "http://192.168.1.217:8000/"
+        static let BaseUrl = "http://192.168.1.114:9000/"
 
         // List of AuthEndpoints
         static let Register = "auth/user/register"
