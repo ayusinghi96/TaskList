@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r6f-uY-DgT">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--UserProfile-->
+        <scene sceneID="kd5-sm-dU6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="hfM-kX-aPn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I36-5x-ceh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3241" y="-127"/>
+        </scene>
+        <!--AddTask-->
+        <scene sceneID="hVf-x5-BcQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddTask" id="yS3-Ge-PPI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iCx-Hl-r2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3241" y="-93"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DWY-Q1-Laz">
+            <objects>
+                <navigationController id="r6f-uY-DgT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="822-YY-rQa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Primary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nei-cv-pOR" kind="relationship" relationship="rootViewController" id="1ci-H6-Nr1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PyJ-Pw-Zdi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1641" y="-127"/>
+        </scene>
+        <!--InProgress-->
+        <scene sceneID="akE-Tk-Y1M">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InProgress" id="BU2-GQ-ldf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="B9j-Ye-2D8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RKN-oG-Wdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="294"/>
+        </scene>
+        <!--TASKS-->
+        <scene sceneID="Z9Q-om-wGN">
+            <objects>
+                <tabBarController id="nei-cv-pOR" customClass="TabBarViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="TASKS" id="xvf-au-tb0">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="VnP-01-gfj">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logout:" destination="nei-cv-pOR" id="ROz-sC-R3G"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="plusIcon" landscapeImage="plusIcon" largeContentSizeImage="plusIcon" id="68v-1u-Z8s">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="yS3-Ge-PPI" kind="presentation" id="fwp-Le-cY7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="userIcon" landscapeImage="userIcon" largeContentSizeImage="userIcon" id="COi-b5-qJR">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="hfM-kX-aPn" kind="presentation" id="ItZ-FK-msA"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F6q-mY-vtl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="PrimaryDark"/>
+                        <color key="selectedImageTintColor" name="PrimaryDark"/>
+                    </tabBar>
+                    <connections>
+                        <outlet property="logoutButton" destination="VnP-01-gfj" id="3jy-hC-Ozc"/>
+                        <segue destination="BU2-GQ-ldf" kind="relationship" relationship="viewControllers" id="bRs-Hc-rrI"/>
+                        <segue destination="zUf-AE-62G" kind="relationship" relationship="viewControllers" id="37I-w6-ITq"/>
+                        <segue destination="y1e-nL-dBX" kind="relationship" relationship="viewControllers" id="hMb-r7-VTq"/>
+                        <segue destination="mjm-N1-8nK" kind="relationship" relationship="viewControllers" id="KlC-Lo-EG8"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgf-z2-wG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2430" y="-127"/>
+        </scene>
+        <!--Completed-->
+        <scene sceneID="zbn-AY-OWu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Completed" id="zUf-AE-62G" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="CSy-k1-Pn2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QIF-2g-DzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2268" y="294"/>
+        </scene>
+        <!--Cancelled-->
+        <scene sceneID="S52-gV-gbb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Cancelled" id="y1e-nL-dBX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="QEh-ZU-2kh"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eRU-iI-htr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2649" y="294"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="YqT-zM-eIL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="History" id="mjm-N1-8nK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="TUf-Qq-F6m"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KH7-pe-5DO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2999" y="294"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plusIcon" width="20" height="20"/>
+        <image name="userIcon" width="20" height="20"/>
+        <namedColor name="Primary">
+            <color red="1" green="0.44705882352941179" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryDark">
+            <color red="0.56862745098039214" green="0.2627450980392157" blue="0.019607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+</document>
